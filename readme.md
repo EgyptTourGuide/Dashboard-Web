@@ -9,10 +9,14 @@
 ## What is done: 
 
 - Login & 404 Page Connected with API.
-- Bad styling i know, I'm going to fix it later.
+- Style Fixed.
+- Cities and Adding City page done.
+- Icons Added & Logo.
+- Layout done except Nav.
+- Button, Input, Card components.
 
 ## Working on: 
 
 - Authorization 
-- Home
-- Adding City
+- Connecting Add City and Cities with API.
+- Layout Nav.

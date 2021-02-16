@@ -1,13 +1,11 @@
-import React from 'react'
-import Login from './Pages/Unauthenticated/Login'
-import { UnAuthenticated } from './Router'
+import React, { useState } from 'react'
+import { UnAuthenticated, Authenticated } from './Router'
 
 function App() {
+  const [ user, setUser ] = useState({})
 
-
-  return (
-     <UnAuthenticated />
-  )
+  return (user === null ? <UnAuthenticated /> : <Authenticated />)
+  
 }
 
 export default App;

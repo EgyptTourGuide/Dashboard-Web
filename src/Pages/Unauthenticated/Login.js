@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import styles from './Login.module.css'
 import { login } from '../../api/login'
+import Input from '../../components/Input/Input'
+import Button from '../../components/Button/Button'
+import logo from '../../assets/logo2.png'
+
 
 
 const validateUsername = (username)=>{
@@ -60,24 +64,23 @@ const Login = (props)=>{
 
 
     return(
-        <div className={styles.container} style={{height: '100vh'}}>
-            <p className={styles.formHeader}>Login</p>
+        <div className={styles.container}>
            <div className={styles.form}>
-            <input 
-                className={styles.inp} 
+             <img src={logo} alt='LOGO' className={styles.logo} />
+            <Input 
                 placeholder={'Username'} 
                 onChange={_onChangeUsername}
                 value={username}
             />
-            <input 
-                className={styles.inp} 
-                type='password' 
+            <Input 
                 placeholder={'Password'} 
                 onChange={_onChangePassword}
                 value={password}
+                style={{marginTop: 10}}
+                type='password'
             />
-             <button className={styles.btn} onClick={_onClick} >Login</button>
-              <p style={{color: 'darkred', fontSize: 12}}>{error}</p>
+             <Button style={{marginTop: 20}} onClick={_onClick} >Login</Button>
+              {error && <p style={{color: 'darkred', fontSize: 12}}>{error}</p>}
            </div>
         </div>
     )

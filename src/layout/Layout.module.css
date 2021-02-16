@@ -1,0 +1,73 @@
+.container{
+    display: flex;
+
+}
+
+.icon{
+    color: black;
+}
+
+.navContainer{
+    display: flex;
+    flex-direction: column;
+    width: 131px;
+    height: 100vh;
+    border-right: 1px solid black;
+}
+
+.navUser{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80px;
+}
+
+.navUser p{
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.navBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 130px;
+    height: 40px;
+    border: 0;
+    background-color: white;
+    border: 1px solid black;
+    transition: background-color 0.30s;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.btnText{
+    font-size: 14px;
+}
+
+.navBtn:hover{
+    background-color: rgba(0,0,0,0.1);
+}
+
+.pageContainer{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+.addCityHead{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+.addCityHead p {
+    font-size: 25px;
+}
