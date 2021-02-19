@@ -1,12 +1,31 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import Layout from '../../../layout/Layout'
 import classes from './Cities.module.css'
 import Button from '../../../components/Button/Button'
 import Card from '../../../components/Card/Card'
+import { URL } from '../../../api/api'
 
 
 const Cities = (props)=>{
+     const [cities, setCities] = useState([])
+
+
+
+     useEffect(()=>{
+
+      async function fetchData(){
+        try{
+          let res = await fetch(`${URL}/city/cities`)
+          let data = await res.json()
+          setCities(data.cities)
+          }catch(e){
+            console.log(e)
+          }
+      }
+      fetchData()
+
+     }, [])
 
     return(
       <Layout>
@@ -18,7 +37,7 @@ const Cities = (props)=>{
                 <Button>Add City</Button>
             </NavLink>
             <div style={styles.citiesContainer}>
-                <Card title='Cairo'/>
+                { cities.map((city)=><Card title={city.generalId.name} key={city._id} image={city.generalId.media[0]}/>)  }
             </div>
         </div>
       </Layout>

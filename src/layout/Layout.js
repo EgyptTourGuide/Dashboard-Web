@@ -12,25 +12,25 @@ const Layout = (props)=>{
             <div className={classes.navUser}>
             </div>
           <div>
-              <a className={classes.navBtn} onClick={()=>alert('clicked')}>
+              <a className={classes.navBtn} href={'/cities'}>
                  <p className={classes.btnText}> Cities </p>
               </a>
-              <a className={classes.navBtn}>
+              <a className={classes.navBtn} href={null}>
                  <p className={classes.btnText}> Hotels </p>
               </a>
-              <a className={classes.navBtn}>
+              <a className={classes.navBtn} href={null}>
                  <p className={classes.btnText}> Places </p>
               </a>
-              <a className={classes.navBtn}>
+              <a className={classes.navBtn} href={null}>
                  <p className={classes.btnText}> Tourists </p>
               </a>
-              <a className={classes.navBtn}>
+              <a className={classes.navBtn} href={null}>
                  <p className={classes.btnText}> Reports </p>
               </a>
-              <a className={classes.navBtn}>
+              <a className={classes.navBtn} href={null}>
                  <p className={classes.btnText}> Messages </p>
               </a>
-              <a className={classes.navBtn}>
+              <a className={classes.navBtn} href={null}>
                  <p className={classes.btnText}> Settings </p>
               </a>
           </div>

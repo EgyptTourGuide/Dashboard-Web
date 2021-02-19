@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Container = styled.div`
-    background: ${props=>props.image ? `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)), url(/${props.image})` : 'rgba(0,0,0,0.4)'}; 
+    background: ${props=>props.image ? `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)), url(${props.image})` : 'rgba(0,0,0,0.4)'}; 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -16,11 +16,15 @@ const Container = styled.div`
     cursor: pointer;
     margin: 8px;
     opacity: 0.97;
-    transition-property: transform, opacity;
+    transition-property: transform, opacity, background-color;
     transition-duration: 0.30s;
     &:hover{
         opacity: 1;
         transform: scale(1.03);
+        background: ${props=>props.image ? `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url(${props.image})` : 'rgba(0,0,0,0.4)'}; 
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 `
 const Card = (props)=>{

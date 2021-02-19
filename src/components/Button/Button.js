@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
 const Btn = styled.a`
     display: flex;
@@ -18,6 +17,7 @@ const Btn = styled.a`
     margin-bottom: 8px;
     outline: none;
     cursor: pointer;
+    opacity: ${props=>props.disabled ? '0.2' : '1'};
     &:hover{
         p{
           color: white;
@@ -26,7 +26,7 @@ const Btn = styled.a`
     }
     &:active{ 
         p{
-            transform: scale(0.95);
+            transform: ${props=> props.disabled ? '' : 'scale(0.95)'};
         };
     }
     `
@@ -49,10 +49,16 @@ const Btn = styled.a`
  `   
 
 const Button = (props)=>{
-
+   
+    const _onClick = ()=>{
+        if(props.disabled)
+        return
+        if(props.onClick !== undefined)
+         props.onClick()
+    }
 
     return(
-        <Btn href={null} {...props} >
+        <Btn href={null} {...props} onClick={_onClick}>
             <Text fontSize={props.fontSize} >{props.children}</Text>
         </Btn>
     )

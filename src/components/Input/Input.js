@@ -120,7 +120,7 @@ const Input = (props)=>{
           {props.type === 'file' ?  
             <>
             <FileInp id={'upload'} {...props} />
-            <FileLabel for='upload' >{props.placeholder}</FileLabel>
+            <FileLabel htmlFor='upload' >{props.placeholder}</FileLabel>
             </>
           :     
             <>
