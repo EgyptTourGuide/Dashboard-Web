@@ -12,7 +12,7 @@ const Header = (props)=>{
                 <img src={logo} alt="Logo" className={styles.img}/>
             </Link>
             <Input placeholder='Search' width={340} icon={'IoSearchOutline'}/>
-            <Button width={50} fontSize={12} style={{marginRight: 15}}>
+            <Button to='/logout' width={50} fontSize={12} style={{marginRight: 15}}>
                 Logout
             </Button>
         </div>

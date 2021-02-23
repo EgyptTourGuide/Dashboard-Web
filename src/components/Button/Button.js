@@ -1,7 +1,38 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-const Btn = styled.a`
+const Btn = styled(Link)`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: ${props=>props.width ? props.width : 130}px;
+    height: ${props=>props.height ? props.height : 35}px;;
+    border: 0;
+    background-color: white;
+    border: 1px solid black;
+    transition-property: transform, background-color;
+    transition-duration: 0.20s;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    outline: none;
+    cursor: pointer;
+    opacity: ${props=>props.disabled ? '0.2' : '1'};
+    &:hover{
+        p{
+          color: white;
+        };
+        background-color: black;
+    }
+    &:active{ 
+        p{
+            transform: ${props=> props.disabled ? '' : 'scale(0.95)'};
+        };
+    }
+    `
+
+    const BtnTwo = styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,6 +63,7 @@ const Btn = styled.a`
     `
 
 
+
  const Text = styled.p`
    font-size: ${props=>props.fontSize ? props.fontSize : 14}px;
    cursor: pointer;
@@ -57,11 +89,18 @@ const Button = (props)=>{
          props.onClick()
     }
 
-    return(
-        <Btn href={null} {...props} onClick={_onClick}>
+    if(props.to)
+        return(
+            <Btn {...props} onClick={_onClick}>
+                <Text fontSize={props.fontSize} >{props.children}</Text>
+            </Btn>
+        )
+    else 
+      return (
+        <BtnTwo {...props} onClick={_onClick}>
             <Text fontSize={props.fontSize} >{props.children}</Text>
-        </Btn>
-    )
+        </BtnTwo>
+      )
 }
 
 export default Button

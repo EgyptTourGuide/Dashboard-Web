@@ -29,29 +29,8 @@
     padding: 0;
 }
 
-
-
-.navBtn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    width: 130px;
-    height: 40px;
-    border: 0;
-    background-color: white;
-    border: 1px solid black;
-    transition: background-color 0.30s;
-    margin-bottom: 15px;
-    outline: none;
-}
-
 .btnText{
     font-size: 14px;
-}
-
-.navBtn:hover{
-    background-color: rgba(0,0,0,0.1);
 }
 
 .pageContainer{

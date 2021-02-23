@@ -10,13 +10,13 @@
 
 - Login & 404 Page Connected with API.
 - Style Fixed.
-- Cities and Adding City page done.
+- Cities, City, Adding City, About City page done.
 - Icons Added & Logo.
-- Layout done except Nav.
-- Button, Input, Card components.
+- Button, Input, Card, Field, Loading components.
+- About City connected with API.
+- Some logic fixed.
 
 ## Working on: 
 
-- Authorization 
-- Connecting Add City and Cities with API.
-- Layout Nav.
+- Edit Media
+- Authorization (Later)

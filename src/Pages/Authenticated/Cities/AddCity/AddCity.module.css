@@ -10,21 +10,3 @@
     display: flex;
     flex-direction: column;
 }
-
-
-
-.space{
-    width: 100px;
-    height: 30px;
-}
-
-.field{
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-}
-
-.field p{
-    width: 120px;
-    font-weight: bold;
-}

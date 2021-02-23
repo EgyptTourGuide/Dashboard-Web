@@ -1,7 +1,9 @@
 import styled from 'styled-components'
+import { Link } from "react-router-dom"
+import { useEffect, useState, useRef } from 'react'
 
 const Container = styled.div`
-    background: ${props=>props.image ? `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)), url(${props.image})` : 'rgba(0,0,0,0.4)'}; 
+    background: ${props=>props.image ? `url(${props.image})` : 'rgba(0,0,0,0.4)'}; 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -16,22 +18,44 @@ const Container = styled.div`
     cursor: pointer;
     margin: 8px;
     opacity: 0.97;
-    transition-property: transform, opacity, background-color;
+    transition-property: transform, opacity;
     transition-duration: 0.30s;
     &:hover{
+        a{
+            background-color: rgba(0,0,0,0.18)
+        }
         opacity: 1;
         transform: scale(1.03);
-        background: ${props=>props.image ? `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url(${props.image})` : 'rgba(0,0,0,0.4)'}; 
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
     }
 `
+
+const Darker = styled(Link)`
+    position: absolute;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    flex-direction: column;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    align-items: center;
+    width: 250px;
+    height: 150px;
+    margin: 8px;
+    border-radius: 15px;
+    transition-property: background-color;
+    transition-duration: 0.30s;
+    background-color: rgba(0,0,0,0.4);
+`
+
 const Card = (props)=>{
+  
 
 return(
       <Container {...props}>
+       <Darker to={props.to}>
        <p style={{color: 'white', fontSize: 20, margin: 0, padding: 0}}>{props.title}</p>
+       </Darker>
       </Container>
 )
 }
