@@ -29,8 +29,8 @@ const City = (props)=>{
    return(
         <Layout head={city && city.generalId.name}>
             { city && <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
-            <Card title='About' to={{pathname: `/cities/${city._id}/about`, state: {aboutCity: city.generalId}}} />
-            <Card title='Media' to={{pathname: `/cities/${city._id}/media`, state: {aboutCity: city.generalId}}} />
+            <Card title='About' to={{pathname: `/cities/${city._id}/about`, state: {about: city.generalId}}} />
+            <Card title='Media' to={{pathname: `/cities/${city._id}/media`, state: {data: {media: city.generalId.media, name: city.generalId.name}}}} />
             <Card title='Places / Activity' to={{pathname: `/cities/${city._id}/places`, state: {aboutCity: city.generalId}}}/>
             <Card title='Hotels' to={{pathname: `/cities/${city._id}/hotels`, state: {aboutCity: city.generalId}}}/>
             <Card title='Tours'to={{pathname: `/cities/${city._id}/tours`, state: {aboutCity: city.generalId}}} />

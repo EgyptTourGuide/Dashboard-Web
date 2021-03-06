@@ -15,8 +15,9 @@
 - Button, Input, Card, Field, Loading components.
 - About City connected with API.
 - Some logic fixed.
+- Edit media.
 
 ## Working on: 
 
-- Edit Media
+- Code more clean.
 - Authorization (Later)

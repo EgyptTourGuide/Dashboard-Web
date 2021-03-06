@@ -17,14 +17,13 @@ const About = (props)=>{
     
     React.useEffect(()=>{
         if(props.location.state){
-            const { name, description, location } = props.location.state.aboutCity
+            const { name, description, location } = props.location.state.about
             setInfo({name, description, long: location.coordinates[0], lat: location.coordinates[1]})
             setLoading(false)
         }else{
             async function getInfo(){
                 try{
                     let res = await axios.get(`${URL}/cities/${props.match.params.id}`)
-                    setInfo(res.data.city.generalId)
                     const { name, description, location } = res.data.city.generalId
                     setInfo({name, description, long: location.coordinates[0], lat: location.coordinates[1]})
                 }catch(e){

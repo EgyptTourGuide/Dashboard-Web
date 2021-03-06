@@ -5,6 +5,7 @@ import City from './Pages/Authenticated/Cities/City/City'
 import AddCity from './Pages/Authenticated/Cities/AddCity/AddCity'
 import About from './Pages/Authenticated/Cities/City/About'
 import Notfound from './Pages/404'
+import Media from './Pages/Authenticated/Cities/City/Media'
 import {
     BrowserRouter,
     Switch,
@@ -46,12 +47,5 @@ export const Authenticated = (props)=>{
   )
 }
 
-
-const Media = (props)=>{
-  return(
-    <div>
-    </div>
-  )
-}
 
 
