@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
-import { useEffect, useState, useRef } from 'react'
+
 
 const Container = styled.div`
     background: ${props=>props.image ? `url(${props.image})` : 'rgba(0,0,0,0.4)'}; 

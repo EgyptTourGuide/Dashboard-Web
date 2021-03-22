@@ -9,7 +9,7 @@ import Button from '../../../../components/Button/Button'
 
 
 const About = (props)=>{
-
+     
     const [ info, setInfo ] = useState(null)
     const [ loading, setLoading ] = useState(true)
     const [ saving, setSaving ] = useState(false)
@@ -36,6 +36,17 @@ const About = (props)=>{
         }
     }, [props])
     
+
+    const deleteCity= async()=>{
+       try{
+            let res = await axios.delete(`${URL}/cities/${props.match.params.id}`)
+            if(res.status === 200)
+                props.history.replace('/cities')
+       }catch(e){
+           console.log(e)
+       }
+    }
+
     const save = async()=>{
         setSaving(true)
         try{
@@ -59,7 +70,7 @@ const About = (props)=>{
     if(loading) return <Loading />
     else   
     return(
-        <Layout to={{pathname: `/cities/${props.match.params.id}`}} head={`${info.name} / about`}>
+        <Layout to={{pathname: `/cities/${props.match.params.id}`}} head={`${info.name} / about`} del={deleteCity}>
         <div style={styles.container}>
         <div style={{
                 marginTop: 60,

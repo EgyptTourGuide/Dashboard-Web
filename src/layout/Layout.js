@@ -3,7 +3,7 @@ import classes from './Layout.module.css'
 import Header from '../components/Header/Header'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { IoArrowBackCircleOutline } from 'react-icons/io5'
+import { IoArrowBackCircleOutline, IoBan } from 'react-icons/io5'
 
 
 
@@ -76,9 +76,19 @@ const Layout = (props)=>{
                               color: 'black'
                            }} 
                         />
-             </Link>
+                     </Link>
                     </div>}
                   <p style={{textAlign: 'center', flex: 1}}>{props.head}</p>
+                  {props.del && <div style={{display: 'flex', marginRight: 15, height: '100%', alignItems: 'center', justifyContent: 'center'}}>
+                       <IoBan
+                           onClick={props.del}
+                           style={{
+                              fontSize: 30,
+                              alignSelf: 'center',
+                              color: 'black'
+                           }} 
+                        />
+                    </div>}
             </div>
            }
           {props.children}
