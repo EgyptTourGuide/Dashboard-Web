@@ -34,7 +34,7 @@ const Media = (props)=>{
         const getInfo = async()=>{
             try{
                 let res = await axios.get(`${URL}/cities/${props.match.params.id}`)
-                setData({name: res.data.city.generalId.name, media: res.data.city.generalId.media})
+                setData({name: res.data.city.name, media: res.data.city.media})
                 setLoadingPage(false)
             }catch(e){
                 console.log(e)
@@ -42,7 +42,7 @@ const Media = (props)=>{
             return
         }
         if(props.location.state){
-            const {name , media} = props.location.state.data
+            const {name , media} = props.location.state.city
             setData({media, name})
             setLoadingPage(false)
         }else{

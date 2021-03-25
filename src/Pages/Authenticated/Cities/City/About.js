@@ -17,7 +17,7 @@ const About = (props)=>{
     
     React.useEffect(()=>{
         if(props.location.state){
-            const { name, description, location } = props.location.state.about
+            const { name, description, location } = props.location.state.city
             setInfo({name, description, long: location.coordinates[0], lat: location.coordinates[1]})
             setLoading(false)
         }else{

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { IoCloseCircleOutline } from "react-icons/io5"
 
 const Btn = styled(Link)`
     display: flex;
@@ -102,5 +103,16 @@ const Button = (props)=>{
         </BtnTwo>
       )
 }
+
+export const DeleteIcon = styled(IoCloseCircleOutline)`
+    font-size: 25px;
+    color: black;
+    transition: color, transform 0.25s;
+    &:hover{
+        color: darkred;
+        transform: scale(1.2);
+    }
+`
+
 
 export default Button

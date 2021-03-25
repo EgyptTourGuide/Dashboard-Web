@@ -6,13 +6,13 @@ import Button from '../Button/Button'
 import Picker from '../Picker/Picker'
 const { Circle } = Progress
 
-const days = [{label: 'SUN', value: 'sunday'},{ 
-    label: 'MON', value: 'monday'},{
-    label: 'TUE', value: 'tuesday'},{
-    label: 'WED', value: 'wednesday'},{
-    label: 'THU', value: 'thursday'},{
-    label: 'FRI', value: 'friday'},{
-    label: 'SAT', value: 'saturday'}]
+const days = [{label: 'SUN', value: 'Sunday'},{ 
+    label: 'MON', value: 'Monday'},{
+    label: 'TUE', value: 'Tuesday'},{
+    label: 'WED', value: 'Wednesday'},{
+    label: 'THU', value: 'Thursday'},{
+    label: 'FRI', value: 'Friday'},{
+    label: 'SAT', value: 'Saturday'}]
 
 const Field = (props)=>{
 
@@ -110,7 +110,7 @@ const Field = (props)=>{
                 style={props.secStyle}
                 type={props.secType}
             />)}
-            {props.type === 'time' && <Button style={{marginLeft: 12, marginTop: 6, width: 50}}>Add</Button>}
+            {props.type === 'time' && <Button onClick={props.onAdd} style={{marginLeft: 12, marginTop: 6, width: 50}}>Add</Button>}
         </div> 
     )}
 }

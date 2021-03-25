@@ -17,13 +17,12 @@ import Select from 'react-select'
 const Picker = (props)=>{
 
     const { selectLoading, selectOptions, selectPlaceholder, onSelect, selectWidth, selected, selectMulti  } = props
-
     return(
         <Select 
         isLoading={selectLoading}
         isSearchable
         placeholder={selectPlaceholder}
-        defaultValue={selectOptions[selected]}
+        value={selected}
         onChange={onSelect} 
         options={selectOptions} 
         isMulti={selectMulti}

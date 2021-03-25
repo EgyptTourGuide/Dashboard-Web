@@ -34,7 +34,7 @@ const Cities = (props)=>{
         <div className={classes.container}>         
                 <Button to='cities/addcity' style={styles.nav}>Add City</Button>
             <div style={styles.citiesContainer}>
-                { cities.map((city)=><Card to={`cities/${city._id}`} title={city.generalId.name} key={city._id} image={city.generalId.media.length > 0 ? city.generalId.media[0] : ''}/>)  }
+                { cities.map((city)=><Card to={`cities/${city.id}`} title={city.name} key={city.id} image={city.media.length > 0 ? city.media[0] : ''}/>)  }
             </div>
         </div>
       </Layout>

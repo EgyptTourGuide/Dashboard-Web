@@ -8,6 +8,8 @@ import Notfound from './Pages/404'
 import Media from './Pages/Authenticated/Cities/City/Media'
 import Places from './Pages/Authenticated/Places/Places'
 import AddPlace from './Pages/Authenticated/Places/AddPlace'
+import Settings from './Pages/Authenticated/Settings/Settings'
+import PlaceSettings from './Pages/Authenticated/Settings/PlaceSettings/PlaceSettings'
 import {
     BrowserRouter,
     Switch,
@@ -45,6 +47,8 @@ export const Authenticated = (props)=>{
          <Route exact path='/cities/:id/media' component={Media} />
          <Route exact path='/places' component={Places} />
          <Route exact path='/places/add' component={AddPlace} />
+         <Route exact path='/settings' component={Settings} />
+         <Route exact path='/settings/place' component={PlaceSettings} />
          <Route path='/404' exact component={Notfound} />
           <Redirect from='*' to='/404' />
        </Switch>
