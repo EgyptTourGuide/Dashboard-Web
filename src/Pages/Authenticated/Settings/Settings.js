@@ -7,9 +7,9 @@ const Settings = (props)=>{
     return(
         <Layout head='Settings'>
         <div style={styles.cardContainer}>
-        <Card title='Place Settings' to='settings/place'/>
         <Card title='My Account' to='settings/myaccount'/>
-        <Card title='Users' to='settings/admin'/>
+        <Card title='Place / Activity' to='settings/place'/>
+        <Card title='Admins' to='settings/admins'/>
         </div>
         </Layout>
     )

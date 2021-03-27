@@ -17,37 +17,47 @@ const Places = (props)=>{
     const [loading , setLoading ] = useState(true)
 
     useEffect(()=>{
+        //If we have city id in query param
         const cityId = qs.parse(props.location.search,{ ignoreQueryPrefix: true }).city
-        setLoading(true)
 
+        setLoading(true)
+        //Function to request city
         async function reqCity(id){
+            try{
            let city = await getCity(id)
            setCity({id: city.id, name: city.name})
+            }catch(e){
+                console.log(e)
+                window.location.href = "/places"
+            }
         }
+        //Function to request places with id or without id
         async function getPlaces(id){
             try{
-            let res = await axios.get(`${URL}/places?city=${id}`)
+            let res = id ? await axios.get(`${URL}/places?city=${id}`) : await axios.get(`${URL}/places`) 
             if(res.status === 200) setPlaces(res.data.places)
             setLoading(false)
             }catch(e){
                 console.log(e)
             }
         }
+        //Check if we have city in location state
         if(props.location.state){
             setCity(props.location.state.city)
             getPlaces(props.location.state.city && props.location.state.city.id)
         }
+        //Check if city id in query not null
         else if(cityId !== undefined){
             reqCity(cityId)
             getPlaces(cityId)
 
         }
+        //If we reqeust places without city id
         else{
-                console.log("No City")
-                setLoading(false)
-
+            setCity(null)
+            getPlaces()
         }
-    },[])
+    },[props])
     if(loading){
         return (<Loading />)
     }else{

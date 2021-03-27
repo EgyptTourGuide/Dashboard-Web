@@ -3,7 +3,7 @@ import classes from './AddCity.module.css'
 import Layout from '../../../../layout/Layout'
 import Button from '../../../../components/Button/Button'
 import axios from 'axios'
-import { URL } from '../../../../api/api'
+import { URL, authAxios } from '../../../../api/api'
 import Field from '../../../../components/Field/Field'
 
 
@@ -44,7 +44,7 @@ export default class AddCity extends React.Component{
         
             this.setState({loading: true})
             console.log(this.state)
-            let res = await axios.post(`${URL}/cities/`, fd ,this.options)
+            let res = await authAxios.post(`${URL}/cities/`, fd ,this.options)
             console.log(res)
             this.setState({loading: false})
 

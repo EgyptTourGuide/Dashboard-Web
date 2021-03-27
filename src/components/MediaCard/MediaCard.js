@@ -49,7 +49,6 @@ const Image = styled.div`
 const MediaCard = (props)=>{
 
   const onDelete = ()=>{
-      console.log('delete '+ props.index)
       props.onDelete(props.index)
   }
   if(props.video){

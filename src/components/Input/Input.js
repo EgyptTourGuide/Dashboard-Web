@@ -133,7 +133,7 @@ const Input = (props)=>{
                 position: 'absolute',
                 fontSize: 20,
                 alignSelf: 'flex-end',
-                marginRight: 8,
+                paddingRight: 8,
               }}
              
              />}

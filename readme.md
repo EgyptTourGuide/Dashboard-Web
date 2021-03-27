@@ -9,14 +9,14 @@
 ## What is done: 
 
 - Login & 404 Page Connected with API.
-- Style Fixed.
 - City CRUD done.
 - Places Add, Get
 - Icons Added & Logo.
 - Button, Input, Card, Field, Loading components.
+- Authorization
 
 ## Working on:
 
 - Rate from && place update.
 - Code more clean.
-- Authorization (Later)
+- Fix style

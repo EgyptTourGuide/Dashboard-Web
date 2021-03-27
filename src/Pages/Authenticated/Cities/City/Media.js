@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Layout from '../../../../layout/Layout'
 import axios from 'axios'
-import { URL } from '../../../../api/api'
+import { URL, authAxios } from '../../../../api/api'
 import Loading from '../../../../components/Loading'
 import Button from '../../../../components/Button/Button'
 import styled from 'styled-components'
@@ -66,19 +66,17 @@ const Media = (props)=>{
             const fd = new FormData()
             fd.append('old', JSON.stringify(data.media))
             for(let i = 0; i < files.length; i++){
-                console.log(files[i])
                 fd.append(`media`, files[i])
             }
             
-             res = await axios.put(`${URL}/cities/${props.match.params.id}/media`, fd ,options)
+             res = await authAxios.put(`${URL}/cities/${props.match.params.id}/media`, fd ,options)
         }else{
             let d = data.media
-             res = await axios.put(`${URL}/cities/${props.match.params.id}/media`, {old: d} ,options)
+             res = await authAxios.put(`${URL}/cities/${props.match.params.id}/media`, {old: d} ,options)
         }   
          setLoading(false)
          if(res.status === 200){
             setMessage('Saved')
-            console.log(res.data.media)
             setData({...data, media: res.data.media})
          }
         }catch(e){
@@ -91,7 +89,7 @@ const Media = (props)=>{
         let d = data.media
         d.splice(index, 1)
         try{
-           let res = await axios.put(`${URL}/cities/${props.match.params.id}/media`, {old: d} ,options)
+           let res = await authAxios.put(`${URL}/cities/${props.match.params.id}/media`, {old: d} ,options)
            if(res.status === 200)
             setData({...data, media: res.data.media})
         }catch(e){

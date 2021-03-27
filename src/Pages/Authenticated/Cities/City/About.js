@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Layout from '../../../../layout/Layout'
 import Field from '../../../../components/Field/Field'
 import axios from 'axios'
-import { URL } from '../../../../api/api'
+import { URL, authAxios } from '../../../../api/api'
 import Loading from '../../../../components/Loading'
 import Button from '../../../../components/Button/Button'
 
@@ -24,7 +24,7 @@ const About = (props)=>{
             async function getInfo(){
                 try{
                     let res = await axios.get(`${URL}/cities/${props.match.params.id}`)
-                    const { name, description, location } = res.data.city.generalId
+                    const { name, description, location } = res.data.city
                     setInfo({name, description, long: location.coordinates[0], lat: location.coordinates[1]})
                 }catch(e){
                     console.log(e)
@@ -39,7 +39,7 @@ const About = (props)=>{
 
     const deleteCity= async()=>{
        try{
-            let res = await axios.delete(`${URL}/cities/${props.match.params.id}`)
+            let res = await authAxios.delete(`${URL}/cities/${props.match.params.id}`)
             if(res.status === 200)
                 props.history.replace('/cities')
        }catch(e){
@@ -50,7 +50,7 @@ const About = (props)=>{
     const save = async()=>{
         setSaving(true)
         try{
-        let res = await axios.put(`${URL}/cities/${props.match.params.id}/about`, info)
+        let res = await authAxios.put(`${URL}/cities/${props.match.params.id}/about`, info)
         console.log(res)
         if(res.status === 200){
             setSaving(false)
@@ -60,8 +60,7 @@ const About = (props)=>{
             setSaving(false)
         }
         }catch(err){
-            console.log(err.response.data.errors)
-            setMsg(err.response.data.errors[0])
+            console.log(err)
             setSaving(false)
         }
         

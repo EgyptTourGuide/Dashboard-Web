@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '../../../layout/Layout'
 import Field from '../../../components/Field/Field'
 import { ListWithDelete } from '../../../components/List/List'
-import { URL } from '../../../api/api'
+import { authAxios, URL } from '../../../api/api'
 import axios from 'axios'
 import Button from '../../../components/Button/Button'
 
@@ -44,6 +44,9 @@ export default class AddPlace extends React.Component{
         isAvailable: null,
         percent: null,
         loading: false,
+        requirements: [],
+        placeRequirements: [],
+        requirementsLoading: true,
 
      }
 
@@ -51,9 +54,11 @@ export default class AddPlace extends React.Component{
          try{
          let citiesRes = await axios.get(`${URL}/cities`)
          let tagsRes = await axios.get(`${URL}/settings/places/tags`)
+         let requirementsRes = await axios.get(`${URL}/settings/places/requirements`)
          const cities = citiesRes.data.cities.map((city)=>({value: city.id, label: city.name}))
          const tags = tagsRes.data.tags.map(tag=>({value: tag, label: tag}))
-         this.setState({cities, citiesLoading: false, tags, tagsLoading: false})
+         const requirements = requirementsRes.data.requirements.map(tag=>({value: tag, label: tag}))
+         this.setState({cities, citiesLoading: false, tags, tagsLoading: false, requirements, requirementsLoading: false})
          }catch(e){
              console.log(e)
              return []
@@ -129,6 +134,7 @@ export default class AddPlace extends React.Component{
             fd.append('ticket', JSON.stringify(ticket))
             fd.append('isAvailable', isAvailable)
             fd.append('cityId', city.id)
+            fd.append('requirements', JSON.stringify(this.state.placeRequirements))
             fd.append('tags', JSON.stringify(placeTags))
             for(let i = 0; i < files.length; i++){
                 fd.append(`media`, this.state.files[i])
@@ -136,7 +142,7 @@ export default class AddPlace extends React.Component{
 
             try{
                 this.setState({loading: true})
-                let res = await axios.post(`${URL}/places/`, fd ,this.options)
+                let res = await authAxios.post(`${URL}/places/`, fd ,this.options)
                 if(res.status === 201) this.setState({success: 'Place Created!'})
                 this.setState(prevState=>({loading: false, submitDisable: false, 
                     name: '', long: '', lat: '', description: '', 
@@ -211,6 +217,16 @@ export default class AddPlace extends React.Component{
              selectOptions={tags}
              selectLoading={tagsLoading}
              onSelect={(obj)=> this.setState({errors: [], placeTags: obj.map(i=>i.value)})}
+             selectMulti
+             selectWidth={300}
+            />
+            <Field
+             label='Requirements'
+             type='select'
+             selectPlaceholder='Requirements'
+             selectOptions={this.state.requirements}
+             selectLoading={this.state.requirementsLoading}
+             onSelect={(obj)=> this.setState({errors: [], placeRequirements: obj.map(i=>i.value)})}
              selectMulti
              selectWidth={300}
             />

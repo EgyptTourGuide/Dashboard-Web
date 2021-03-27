@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import styles from './Login.module.css'
 import { login } from '../../api/login'
 import Input from '../../components/Input/Input'
 import Button from '../../components/Button/Button'
 import logo from '../../assets/logo2.png'
+import { AuthContext } from '../../AuthProvider'
 
 
 
@@ -24,15 +24,13 @@ const validatePassword = (password)=>{
 
 const Login = (props)=>{
 
-    
+    const data = useContext(AuthContext)
     
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
+    const [ loading, setLoading ] = useState(false)
     const [ error, setError ] = useState('')
     
-    useEffect(()=>{
-        console.log(error)
-    }, [error])
 
     const _onChangeUsername = (event)=>{
         setUsername(event.target.value)
@@ -47,18 +45,24 @@ const Login = (props)=>{
 
     const _onClick = async()=>{
         
+        try{
         if(error !== '') return
         if(validateUsername(username) || validatePassword(password)){
             setError('Missing username or password!')
             return
         }
+        setLoading(true)
         let res = await login({username, password})
         if(res.error){
             setError(res.errors[0])
+            setLoading(false)
         }else{
-            console.log('success')
+            setLoading(false)
+            data.login(res.user)
         }
-        
+        }catch(e){
+            console.log(e)
+        }
 
     }
 
@@ -79,7 +83,7 @@ const Login = (props)=>{
                 style={{marginTop: 10}}
                 type='password'
             />
-             <Button style={{marginTop: 20}} onClick={_onClick} >Login</Button>
+             <Button disabled={loading} style={{marginTop: 20, width: 100, height: 35}} onClick={_onClick}>{loading ? 'loading..' : 'Login'}</Button>
               {error && <p style={{color: 'darkred', fontSize: 12}}>{error}</p>}
            </div>
         </div>

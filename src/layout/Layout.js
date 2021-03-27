@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './Layout.module.css'
 import Header from '../components/Header/Header'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { IoArrowBackCircleOutline, IoBan } from 'react-icons/io5'
 
 
@@ -26,9 +26,8 @@ p{
 &:hover{
    background-color: rgba(0,0,0,0.1);
 }
-
-
 `
+
 
 
 const Layout = (props)=>{
@@ -47,7 +46,7 @@ const Layout = (props)=>{
               <Nav  to='/hotels'>
                  <p className={classes.btnText}> Hotels </p>
               </Nav>
-              <Nav  to='/places'>
+              <Nav to="/places" query={{ the: 'query' }}>
                  <p className={classes.btnText}> Places </p>
               </Nav>
               <Nav  to='/tourists'>

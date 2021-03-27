@@ -4,14 +4,12 @@ import { URL } from './api'
 
 export const login = async ({username, password})=>{
     try{  
-
-        let data = await JSON.stringify({username, password})
-        const response = await fetch(`${URL}/login`, {
+        const response = await fetch(`${URL}/login/admin`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: data
+            body: JSON.stringify({username, password})
         })
         let resJson = await response.json()
         if(response.status !== 200){
