@@ -84,7 +84,7 @@ const Login = (props)=>{
                 type='password'
             />
              <Button disabled={loading} style={{marginTop: 20, width: 100, height: 35}} onClick={_onClick}>{loading ? 'loading..' : 'Login'}</Button>
-              {error && <p style={{color: 'darkred', fontSize: 12}}>{error}</p>}
+              {error && <p style={{color: 'darkred', fontSize: 12, margin: 0, padding: 0}}>{error}</p>}
            </div>
         </div>
     )

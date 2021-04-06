@@ -30,30 +30,31 @@ export default class AddCity extends React.Component{
 
     submit= async()=>{
 
-        const fd = new FormData()
-        fd.append('name', this.state.name)
-        fd.append('description', this.state.description)
-        fd.append('long', this.state.long)
-        fd.append('lat', this.state.lat)
-        for(let i = 0; i < this.state.files.length; i++){
-            console.log(this.state.files[i])
-            fd.append(`media`, this.state.files[i])
-        }
+        if(this.state.name && this.state.description && this.state.long && this.state.lat){
+            const fd = new FormData()
+            fd.append('name', this.state.name)
+            fd.append('description', this.state.description)
+            fd.append('long', this.state.long)
+            fd.append('lat', this.state.lat)
+            for(let i = 0; i < this.state.files.length; i++){
+                console.log(this.state.files[i])
+                fd.append(`media`, this.state.files[i])
+            }
 
-        try{
-        
-            this.setState({loading: true})
-            console.log(this.state)
-            let res = await authAxios.post(`${URL}/cities/`, fd ,this.options)
-            console.log(res)
-            this.setState({loading: false})
+            try{
+            
+                this.setState({loading: true})
+                let res = await authAxios.post(`${URL}/cities/`, fd ,this.options)
+                console.log(res)
+                this.setState({loading: false, success: true})
 
-        }catch(e){
+            }catch(e){
 
-            if(e.response){
-                this.setState({error: e.response.data.errors[0], loading: false})
-            }else
-            this.setState({error: 'Some Error here!', loading: false})
+                if(e.response.data.errors){
+                    this.setState({error: e.response.data.errors[0], loading: false})
+                }else
+                this.setState({error: 'Some Error here!', loading: false})
+            }
         }
     }
 

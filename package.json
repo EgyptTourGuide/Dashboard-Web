@@ -23,6 +23,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "react-select": "^4.3.0",
+    "react-stars": "^2.2.5",
     "react-web-vector-icons": "^1.0.2",
     "reactjs-image-gallery": "^1.1.7",
     "rsuite": "^4.8.4",

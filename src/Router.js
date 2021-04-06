@@ -10,10 +10,12 @@ import Places from './Pages/Authenticated/Places/Places'
 import AddPlace from './Pages/Authenticated/Places/AddPlace'
 import Settings from './Pages/Authenticated/Settings/Settings'
 import PlaceSettings from './Pages/Authenticated/Settings/PlaceSettings/PlaceSettings'
+import Tourists from './Pages/Authenticated/Tourists/Tourists'
 import { AuthContext } from './AuthProvider'
 import Loading from './components/Loading'
+import Admins from './Pages/Authenticated/Admins/Admins'
+import Place from './Pages/Authenticated/Places/Place/Place'
 import jwt_decode from "jwt-decode"
-
 import {
     BrowserRouter,
     Switch,
@@ -53,7 +55,10 @@ const Authenticated = (props)=>{
          <Route exact path='/cities/:id/media' component={Media} />
          <Route exact path='/places' component={Places} />
          <Route exact path='/places/add' component={AddPlace} />
+         <Route exact path='/places/:id' component={Place} />
+         <Route exact path='/tourists' component={Tourists} />
          <Route exact path='/settings' component={Settings} />
+         <Route exact path='/settings/admin' component={Admins} />
          <Route exact path='/settings/place' component={PlaceSettings} />
          <Route exact path='/settings/myaccount' component={MyAccount} />
          <Route path='/404' exact component={Notfound} />
@@ -67,23 +72,27 @@ const Router = (props)=>{
   const data = useContext(AuthContext)
   const [loading, setLoading] = useState(true)
 
+
+
+
   useEffect(()=>{
-    try{
-    let storedUser = JSON.parse(localStorage.getItem('user'))
-    if(storedUser){
-      const { token, refreshToken } = storedUser
-      if(token && refreshToken){
-          let Token = jwt_decode(refreshToken)
-          let Refresh = jwt_decode(refreshToken)
-          if(Token && Refresh){
-            data.login(storedUser)
+    const checkUser = async()=>{
+      try{
+        let storedUser = JSON.parse(localStorage.getItem('user'))
+        if(storedUser){
+          const { token, refreshToken } = storedUser
+          if(token && refreshToken){
+              let Refresh = jwt_decode(refreshToken)
+              if(Refresh) data.login(storedUser)
           }
+        }
+      }catch(e){
+        console.log(e)
       }
+      setLoading(false)
     }
-    }catch(e){
-      console.log(e)
-    }
-    setLoading(false)
+    checkUser()
+    
   }, [])
   if(loading) return <Loading />
   else
@@ -101,8 +110,8 @@ const MyAccount = (props)=>{
   return(
     <Layout>
       <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 60, flexDirection: 'column'}}>
-       <p>Username: {user.username}</p>
        <p>Full Name: {user.fullname}</p>
+       <p>User Type: {user.userType}</p>
        <p>Email: {user.email}</p>
       </div>
     </Layout>

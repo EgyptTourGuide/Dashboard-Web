@@ -96,23 +96,23 @@ const PlaceSettings = (props)=>{
     return (
     <Layout>
       <div style={styles.container}>
-          <h2 style={{alignSelf: 'flex-start', marginLeft: 120}}>Tags:</h2>
+          <h2 style={{alignSelf: 'flex-start', marginLeft: 120, borderBottom: '2px solid black'}}>Tags:</h2>
           <div style={styles.tags}>
               <div style={styles.displayTags}>
                    {tags.length > 0 && tags.map(tag=><ListWithDelete value={tag} key={tag} onDelete={deleteTag}/>)}
               </div>
               <div style={styles.inp}>
-              <Input style={{width: 200}} value={tag} onChange={({target})=>setTag(target.value)}/>
+              <Input style={{width: 200, borderRadius: 0, borderTop: 0, borderLeft: 0, borderRight: 0}} value={tag} onChange={({target})=>setTag(target.value)}/>
               <Button style={styles.btn} onClick={addTag}>Add</Button>
               </div>
           </div>
-          <h2 style={{alignSelf: 'flex-start', marginLeft: 120}}>Requirements:</h2>
+          <h2 style={{alignSelf: 'flex-start', marginLeft: 120, borderBottom: '2px solid black'}}>Requirements:</h2>
           <div style={styles.tags}>
               <div style={styles.displayTags}>
                    {requirements.length > 0 && requirements.map(requirement=><ListWithDelete value={requirement} key={requirement} onDelete={deleteRequirement}/>)}
               </div>
               <div style={styles.inp}>
-              <Input style={{width: 200}} value={requirement} onChange={({target})=>setRequirement(target.value)}/>
+              <Input style={{width: 200, borderRadius: 0, borderTop: 0, borderLeft: 0, borderRight: 0}} value={requirement} onChange={({target})=>setRequirement(target.value)}/>
               <Button style={styles.btn} onClick={addRequirement}>Add</Button>
               </div>
           </div>
@@ -152,7 +152,8 @@ const styles = {
     },
     btn: {
         margin: 0, 
-        border: 0
+        border: 0,
+        borderRadius: 1
     }
 
 }

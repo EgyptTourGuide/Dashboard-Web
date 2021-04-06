@@ -107,7 +107,7 @@ const About = (props)=>{
             secValue={info.lat}
         />
         <Button style={{alignSelf: 'center', margin: 20}} disabled={saving} onClick={save}>{saving ? 'Saveing' : 'Save'}</Button>
-         {Msg && <p style={{alignSelf: 'center'}}>{Msg}</p>}
+         {Msg && <p style={{alignSelf: 'center', fontSize: 13}}>{Msg}</p>}
         </div>
         </div>
         </Layout>

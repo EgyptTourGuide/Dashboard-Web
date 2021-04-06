@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const URL = 'http://127.0.0.1:3001'
+export const URL = 'https://egypttourguide.herokuapp.com'
 
 
 const getToken = async()=>{
@@ -23,10 +23,6 @@ export const authAxios = axios.create()
 
 authAxios.interceptors.request.use(async config => {
      
-    //TODO 
-    // 1- Check for refresh token if not expired
-    // 2- Check for token if not null
-
     config.headers.authorization = await JSON.parse(localStorage.getItem('user')).token
     return config
   },

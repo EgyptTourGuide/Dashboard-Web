@@ -55,13 +55,23 @@ export default class AddPlace extends React.Component{
          let citiesRes = await axios.get(`${URL}/cities`)
          let tagsRes = await axios.get(`${URL}/settings/places/tags`)
          let requirementsRes = await axios.get(`${URL}/settings/places/requirements`)
-         const cities = citiesRes.data.cities.map((city)=>({value: city.id, label: city.name}))
-         const tags = tagsRes.data.tags.map(tag=>({value: tag, label: tag}))
-         const requirements = requirementsRes.data.requirements.map(tag=>({value: tag, label: tag}))
-         this.setState({cities, citiesLoading: false, tags, tagsLoading: false, requirements, requirementsLoading: false})
+         if(citiesRes.data.cities){
+            const cities = citiesRes.data.cities.map((city)=>({value: city.id, label: city.name}))
+            this.setState({cities})
+         } 
+         if(tagsRes.data.tags){
+            const tags = tagsRes.data.tags.map(tag=>({value: tag, label: tag}))
+            this.setState({tags})
+         } 
+         if(requirementsRes.data.requirements){
+            const requirements = requirementsRes.data.requirements.map(tag=>({value: tag, label: tag}))
+            this.setState({requirements})
+         }
+         this.setState({requirementsLoading: false, tagsLoading: false, citiesLoading: false})
          }catch(e){
              console.log(e)
-             return []
+             this.setState({cities: [], citiesLoading: false, tags: [], tagsLoading: false, requirements: [], requirementsLoading: false})
+             return
          }
      }
 
