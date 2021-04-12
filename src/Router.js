@@ -16,6 +16,8 @@ import Loading from './components/Loading'
 import Admins from './Pages/Authenticated/Admins/Admins'
 import Place from './Pages/Authenticated/Places/Place/Place'
 import jwt_decode from "jwt-decode"
+import PlaceForm from './Pages/Authenticated/Places/Place/PlaceForm'
+import PlaceReview from './Pages/Authenticated/Places/Place/PlaceReview'
 import {
     BrowserRouter,
     Switch,
@@ -56,6 +58,10 @@ const Authenticated = (props)=>{
          <Route exact path='/places' component={Places} />
          <Route exact path='/places/add' component={AddPlace} />
          <Route exact path='/places/:id' component={Place} />
+{/*          <Route exact path='/places/:id/about' component={PlaceAbout} />
+         <Route exact path='/places/:id/media' component={PlaceMedia} /> */}
+         <Route exact path='/places/:id/form' component={PlaceForm} />
+         <Route exact path='/places/:id/reviews' component={PlaceReview} /> 
          <Route exact path='/tourists' component={Tourists} />
          <Route exact path='/settings' component={Settings} />
          <Route exact path='/settings/admin' component={Admins} />

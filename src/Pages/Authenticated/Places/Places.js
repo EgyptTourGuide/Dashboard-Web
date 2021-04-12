@@ -66,7 +66,7 @@ const Places = (props)=>{
             <div style={styles.container}>
                 <Button to={{pathname: `/places/add`, state: { city }}} style={styles.btn}>Add Place</Button>
                 <div style={styles.placesContainer}>
-                    {places && places.map(place=><Card to={`places/${place.id}`} stars={-1} title={place.name} key={place.id} image={place.media.length > 0 ? place.media[0] : ''} />)}
+                    {places && places.map(place=><Card to={`places/${place.id}`} stars={place.rate} title={place.name} key={place.id} image={place.media.length > 0 ? place.media[0] : ''} />)}
                 </div>
             </div>
             </Layout>

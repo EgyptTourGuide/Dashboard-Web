@@ -5,7 +5,9 @@ export const ListWithDelete = (props)=>{
     const onDelete = ()=>props.onDelete(props.value)
     return(
     <div style={styles.HoursContainer}>
+        <div style={{width: 250, overflowWrap: 'break-word'}}>
         <p style={styles.HoursP}>{props.value}</p>
+        </div>
         <DeleteIcon onClick={onDelete} />
     </div>
 )}

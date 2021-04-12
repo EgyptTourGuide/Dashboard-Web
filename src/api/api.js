@@ -23,7 +23,7 @@ export const authAxios = axios.create()
 
 authAxios.interceptors.request.use(async config => {
      
-    config.headers.authorization = await JSON.parse(localStorage.getItem('user')).token
+    config.headers.authorization = await JSON.parse(localStorage.getItem('user')).token //token
     return config
   },
   error => {

@@ -45,12 +45,12 @@ export default class AddCity extends React.Component{
             
                 this.setState({loading: true})
                 let res = await authAxios.post(`${URL}/cities/`, fd ,this.options)
-                console.log(res)
-                this.setState({loading: false, success: true})
+                if(res.status === 201)
+                    this.setState({loading: false, success: true})
 
             }catch(e){
-
-                if(e.response.data.errors){
+                console.log(e)
+                if(e.response){
                     this.setState({error: e.response.data.errors[0], loading: false})
                 }else
                 this.setState({error: 'Some Error here!', loading: false})
