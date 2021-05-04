@@ -81,7 +81,7 @@ const PlaceForm = (props)=>{
     }
      
     if(loading){
-        return <Loading />
+        return <Layout><Loading /></Layout>
     }else
     return(
         <Layout to={{pathname: `/places/${props.match.params.id}`}} head={`${placeForm !== null && `Places / ${placeForm.name} / Form`}`}>

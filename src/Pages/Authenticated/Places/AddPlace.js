@@ -133,7 +133,6 @@ export default class AddPlace extends React.Component{
             this.setState(prevState=> ({submitDisable: !prevState.submitDisable}))
         }else{
             const { name, description, hours, long, lat, files, ticket, isAvailable, city, placeTags } = this.state
-            //Do your request here
             const fd = new FormData()
             
             fd.append('name', name)
@@ -262,9 +261,9 @@ export default class AddPlace extends React.Component{
              secWidth={100}
             />
             <Field
-             label='State:'
+             label='Status:'
              type='select'
-             selectPlaceholder='State'
+             selectPlaceholder='Status'
              onSelect={(obj)=>this.setState({errors: [], isAvailable: obj.value})}
              selectOptions={[{label: 'Available', value: true},{label: 'Not Available', value: false}]} 
             />

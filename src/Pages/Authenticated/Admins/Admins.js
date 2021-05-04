@@ -26,7 +26,7 @@ const Admins = (props)=>{
 
 
     return(
-        <Layout head='Settings/Admins'>
+        <Layout head='Settings / Admins'>
             <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: 15}}>
                 { admins.length > 0 && admins.map(admin=><Admin 
                 id={admin.id} 
@@ -80,7 +80,7 @@ const Admin = (props)=>{
 
 
     return (
-        <Container to={`/tourists/${props.id}`}>
+        <Container to={`/Admin/${props.id}`}>
             <ProfileImage image={props.image} />
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
                 <p style={{margin: 0, padding: 0, color: 'black'}}>{props.name}</p>

@@ -66,7 +66,7 @@ const About = (props)=>{
         
     }
     
-    if(loading) return <Loading />
+    if(loading) return <Layout><Loading /></Layout>
     else   
     return(
         <Layout to={{pathname: `/cities/${props.match.params.id}`}} head={`${info.name} / about`} del={deleteCity}>

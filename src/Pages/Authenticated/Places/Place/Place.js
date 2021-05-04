@@ -27,7 +27,7 @@ const Place = (props)=>{
 
     if(loading){
         return(
-            <Loading />
+            <Layout><Loading /></Layout>
         )
     }else{
         const state = {

@@ -3,13 +3,13 @@ import Layout from '../../../layout/Layout'
 import styled from 'styled-components'
 import ReactStars from 'react-stars'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 import { URL, authAxios } from '../../../api/api'
+import Loading from '../../../components/Loading'
 
 const Tourists = (props)=>{
 
     const [ tourists, setTourists ] = useState([])
-
+    const [ loading, setLoading ] = useState(true)
     useEffect(()=>{
        async function getTourists(){
            try{
@@ -18,7 +18,9 @@ const Tourists = (props)=>{
            setTourists(res.data.tourists)
            }catch(e){
                console.log(e)
+               setLoading(false)
            }
+           setLoading(false)
        }
 
        getTourists()
@@ -26,7 +28,8 @@ const Tourists = (props)=>{
 
     }, [])
 
-
+    if(loading) return <Layout><Loading /></Layout>
+    else
     return(
         <Layout head='Tourists'>
             <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: 15}}>

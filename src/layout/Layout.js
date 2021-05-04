@@ -2,12 +2,11 @@ import React from 'react'
 import classes from './Layout.module.css'
 import Header from '../components/Header/Header'
 import styled from 'styled-components'
-import { Link, useHistory } from 'react-router-dom'
-import { IoArrowBackCircleOutline, IoBan } from 'react-icons/io5'
+import { NavLink, Link } from 'react-router-dom'
+import { IoArrowBackCircleOutline ,IoBan } from 'react-icons/io5'
 
 
-
-let Nav = styled(Link)`
+let Nav = styled(NavLink)`
 display: flex;
 justify-content: center;
 align-items: center;
@@ -22,6 +21,9 @@ margin-bottom: 15px;
 outline: none;
 p{
    color: black;
+   text-align: center;
+   padding: 0;
+   margin: 0;
 }
 &:hover{
    background-color: rgba(0,0,0,0.1);
@@ -40,25 +42,28 @@ const Layout = (props)=>{
             <div className={classes.navUser}>
             </div>
           <div>
-              <Nav  to='/cities'>
+              <Nav activeStyle={{backgroundColor: 'rgba(0,0,0,0.2)'}} to='/cities'>
                  <p className={classes.btnText}> Cities </p>
               </Nav>
-              <Nav  to='/hotels'>
+              <Nav activeStyle={{backgroundColor: 'rgba(0,0,0,0.2)'}} to='/hotels'>
                  <p className={classes.btnText}> Hotels </p>
               </Nav>
-              <Nav to="/places" query={{ the: 'query' }}>
+              <Nav activeStyle={{backgroundColor: 'rgba(0,0,0,0.2)'}} to="/places" query={{ the: 'query' }}>
                  <p className={classes.btnText}> Places </p>
               </Nav>
-              <Nav  to='/tourists'>
+              <Nav activeStyle={{backgroundColor: 'rgba(0,0,0,0.2)'}} to="/activities" query={{ the: 'query' }}>
+                 <p className={classes.btnText}> Activities </p>
+              </Nav>
+              <Nav activeStyle={{backgroundColor: 'rgba(0,0,0,0.2)'}} to='/tourists'>
                  <p className={classes.btnText}> Tourists </p>
               </Nav>
-              <Nav  to='/reports'>
+              <Nav activeStyle={{backgroundColor: 'rgba(0,0,0,0.2)'}} exact to=''>
                  <p className={classes.btnText}> Reports </p>
               </Nav>
-              <Nav  to='/messages'>
+              <Nav activeStyle={{backgroundColor: 'rgba(0,0,0,0.2)'}} exact to=''>
                  <p className={classes.btnText}> Messages </p>
               </Nav>
-              <Nav  to='/settings'>
+              <Nav activeStyle={{backgroundColor: 'rgba(0,0,0,0.2)'}} to='/settings'>
                  <p className={classes.btnText}> Settings </p>
               </Nav>
           </div>

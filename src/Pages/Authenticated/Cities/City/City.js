@@ -33,7 +33,7 @@ const City = (props)=>{
         </Layout>
    )}
    else 
-     return <Loading />
+     return <Layout><Loading /></Layout>
 }
 
 const styles = {

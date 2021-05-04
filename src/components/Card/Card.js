@@ -60,10 +60,9 @@ return(
        {props.stars && <ReactStars
             count={5}
             edit={false}
-            value={props.stars}
+            value={props.stars === 0 ? -1 : props.stars}
             size={24}
             color2={'#ffd700'} 
-            onChange={(e)=>console.log(e)}
             />}
        </Darker>
       </Container>

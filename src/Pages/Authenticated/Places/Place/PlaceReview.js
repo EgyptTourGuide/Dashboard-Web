@@ -55,7 +55,7 @@ const PlaceReview = (props)=>{
         }
     }
 
-    if(loading) return <Loading />
+    if(loading) return <Layout><Loading /></Layout>
     else
     return(
         <Layout to={`/places/${placeForm.id}`} head={placeForm !== null && `Places / ${placeForm.name} / Reviews`}>

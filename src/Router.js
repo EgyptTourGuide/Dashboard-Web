@@ -18,6 +18,7 @@ import Place from './Pages/Authenticated/Places/Place/Place'
 import jwt_decode from "jwt-decode"
 import PlaceForm from './Pages/Authenticated/Places/Place/PlaceForm'
 import PlaceReview from './Pages/Authenticated/Places/Place/PlaceReview'
+import Hotels from './Pages/Authenticated/Hotel/Hotels'
 import {
     BrowserRouter,
     Switch,
@@ -25,6 +26,13 @@ import {
     Redirect,
   } from "react-router-dom";
 import Layout from './layout/Layout'
+import AboutPlace from './Pages/Authenticated/Places/Place/About'
+import Hotel from './Pages/Authenticated/Hotel/Hotel'
+import AddHotel from './Pages/Authenticated/Hotel/AddHotel'
+import Activities from './Pages/Authenticated/Activity/Activities'
+import AddActivity from './Pages/Authenticated/Activity/AddActivity'
+import Activity from './Pages/Authenticated/Activity/Activity'
+import HotelSettings from './Pages/Authenticated/Settings/HotelSettings/HotelSettings'
   
 
 const UnAuthenticated = (props)=>{
@@ -58,14 +66,21 @@ const Authenticated = (props)=>{
          <Route exact path='/places' component={Places} />
          <Route exact path='/places/add' component={AddPlace} />
          <Route exact path='/places/:id' component={Place} />
-{/*          <Route exact path='/places/:id/about' component={PlaceAbout} />
-         <Route exact path='/places/:id/media' component={PlaceMedia} /> */}
+         <Route exact path='/places/:id/about' component={AboutPlace} />
+         {/* <Route exact path='/places/:id/media' component={PlaceMedia} /> */}
          <Route exact path='/places/:id/form' component={PlaceForm} />
          <Route exact path='/places/:id/reviews' component={PlaceReview} /> 
+         <Route exact path='/hotels' component={Hotels} />
+         <Route exact path='/hotels/add' component={AddHotel} />
+         <Route exact path='/hotels/:id' component={Hotel} />
+         <Route exact path='/activities' component={Activities} />
+         <Route exact path='/activities/add' component={AddActivity} />
+         <Route exact path='/activities/:id' component={Activity} />
          <Route exact path='/tourists' component={Tourists} />
          <Route exact path='/settings' component={Settings} />
          <Route exact path='/settings/admin' component={Admins} />
          <Route exact path='/settings/place' component={PlaceSettings} />
+         <Route exact path='/settings/hotel' component={HotelSettings} />
          <Route exact path='/settings/myaccount' component={MyAccount} />
          <Route path='/404' exact component={Notfound} />
           <Redirect from='*' to='/404' />

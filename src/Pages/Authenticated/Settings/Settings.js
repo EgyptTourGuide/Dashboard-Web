@@ -11,6 +11,7 @@ const Settings = (props)=>{
         <Card title='Place / Activity' to='settings/place'/>
         <Card title='Admin' to='settings/admin'/>
         <Card title='Guide' to='settings/Guide'/>
+        <Card title='Hotel' to='settings/hotel'/>
         </div>
         </Layout>
     )

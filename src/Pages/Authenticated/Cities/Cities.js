@@ -18,19 +18,19 @@ const Cities = (props)=>{
           let res = await fetch(`${URL}/cities`)
           let data = await res.json()
           setCities(data.cities)
-          setLoading(false)
           }catch(e){
             console.log(e)
-            setLoading(false)
           }
-      }
-      fetchData()
+          setLoading(false)
 
+      }
+
+      fetchData()
      }, [])
 
     if(!loading)
     return(
-      <Layout>
+      <Layout head='Cities'>
         <div className={classes.container}>         
                 <Button to='cities/addcity' style={styles.nav}>Add City</Button>
             <div style={styles.citiesContainer}>
@@ -40,7 +40,7 @@ const Cities = (props)=>{
       </Layout>
     )
     else
-     return <Loading />
+     return <Layout><Loading /></Layout>
   }
 
 
@@ -57,7 +57,7 @@ const Cities = (props)=>{
         width: '100%'
       },
       nav:{
-        margin: 30, 
+        margin: 15, 
         outline: 'none', 
         textDecoration: 'none'
       }

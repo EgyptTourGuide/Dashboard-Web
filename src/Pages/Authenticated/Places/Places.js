@@ -62,11 +62,11 @@ const Places = (props)=>{
         return (<Loading />)
     }else{
         return(
-            <Layout to={city ? `cities/${city.id}` : ''}  head={`${ city ? `${city.name} / Places & Activity`: ""}`}>
+            <Layout to={city ? `cities/${city.id}` : ''}  head={`${ city ? `${city.name} / Places & Activity`: 'Places'}`}>
             <div style={styles.container}>
                 <Button to={{pathname: `/places/add`, state: { city }}} style={styles.btn}>Add Place</Button>
                 <div style={styles.placesContainer}>
-                    {places && places.map(place=><Card to={`places/${place.id}`} stars={place.rate} title={place.name} key={place.id} image={place.media.length > 0 ? place.media[0] : ''} />)}
+                    {places && places.map(place=><Card to={`places/${place.id}`} stars={place.rate === 0 ? -1 : place.rate} title={place.name} key={place.id} image={place.media.length > 0 ? place.media[0] : ''} />)}
                 </div>
             </div>
             </Layout>
@@ -77,7 +77,7 @@ const Places = (props)=>{
 
 const styles = {
     btn:{
-        margin: 30, 
+        margin: 15, 
         outline: 'none', 
         textDecoration: 'none'
     },

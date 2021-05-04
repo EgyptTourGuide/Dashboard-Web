@@ -98,7 +98,7 @@ const Media = (props)=>{
     }
 
     
-    if(loadingPage) return <Loading />
+    if(loadingPage) return <Layout><Loading /></Layout>
     else
     return(
        <Layout to={{pathname: `/cities/${props.match.params.id}`}} head={`${data.name} / Media`}>
