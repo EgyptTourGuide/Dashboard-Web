@@ -7,11 +7,9 @@ import Button from '../../../components/Button/Button'
 
 export default class AddHotel extends React.Component{
    
-
     constructor(props){
         super(props)
         this.roomRef = React.createRef()
-
     }
 
     state = {
@@ -30,12 +28,9 @@ export default class AddHotel extends React.Component{
         roomLength: 0,
         currentRoom: -1,
         rooms: [],
-        roomSingle: '',
-        roomDouble: '',
+        roomBed: '',
         roomPrice: '',
-        breakfast: '',
-        lunch: '',
-        dinner: '',
+        roomFood: '',
         roomFeatures: [],
         isAvailable: null,
         loading: false,
@@ -75,32 +70,37 @@ export default class AddHotel extends React.Component{
         this.getCitiesAndFeatures()
     }
 
+    validate = async()=>{
+        if(this.state.errors.length === 0){
+            let { name, description, long, lat, rooms, city, isAvailable } = this.state
+            if(name.trim() === '') this.setState(prevState=>({errors: [...prevState.errors, 'Hotel Name is Required']}))
+            if(description.trim() === '') this.setState(prevState=>({errors: [...prevState.errors, 'Hotel description is Required']}))
+            if(long.trim() === '') this.setState(prevState=>({errors: [...prevState.errors, 'Hotel long is Required']}))
+            if(lat.trim() === '') this.setState(prevState=>({errors: [...prevState.errors, 'Hotel lat is Required']}))
+            if(!rooms.length > 0) this.setState(prevState=>({errors: [...prevState.errors, 'Hotel Rooms is Required']}))
+            if(isAvailable === null) this.setState(prevState=>({errors: [...prevState.errors, 'Hotel Status is Required']}))
+            if(city === null) this.setState(prevState=>({errors: [...prevState.errors, 'City is Required']}))    
+        }
+
+        return
+    } 
+
 
     save = async()=>{
-        let { name, description, long, lat, rooms, city, isAvailable, hotelFeatures, files, lunch, breakfast, dinner } = this.state
-        if(name.trim() === '') this.setState(prevState=>({errors: [...prevState.errors, 'Hotel Name is Required']}))
-        if(description.trim() === '') this.setState(prevState=>({errors: [...prevState.errors, 'Hotel description is Required']}))
-        if(long.trim() === '') this.setState(prevState=>({errors: [...prevState.errors, 'Hotel long is Required']}))
-        if(lat.trim() === '') this.setState(prevState=>({errors: [...prevState.errors, 'Hotel lat is Required']}))
-        if(!rooms.length > 0) this.setState(prevState=>({errors: [...prevState.errors, 'Hotel Rooms is Required']}))
-        if(isAvailable === null) this.setState(prevState=>({errors: [...prevState.errors, 'Hotel Status is Required']}))
-        if(city === null) this.setState(prevState=>({errors: [...prevState.errors, 'City is Required']}))
-
-        if(this.state.errors.length > 0) return
+        await this.validate()
+        if(this.state.errors.length > 0){
+            this.setState({loading: false})
+            return
+        } 
         else{
+            let { name, description, long, lat, rooms, city, isAvailable, hotelFeatures, files } = this.state
             const fd = new FormData()
-            let foodPrices = {
-                dinner: !isNaN(dinner) ? dinner : 0,
-                breakfast: !isNaN(breakfast) ? breakfast : 0,
-                lunch: !isNaN(lunch) ? lunch : 0
-            }
             console.log(JSON.stringify(rooms))
             fd.append('name', name)
             fd.append('description', description)
-            fd.append('features', JSON.stringify(hotelFeatures))
+            fd.append('features', hotelFeatures)
             fd.append('long', long)
             fd.append('lat', lat)
-            fd.append('foodPrice', JSON.stringify(foodPrices))
             fd.append('rooms', JSON.stringify(rooms))
             fd.append('isAvailable', isAvailable)
             fd.append('cityId', city.id)
@@ -122,21 +122,17 @@ export default class AddHotel extends React.Component{
 
     }
 
-
-
     next = ()=>{
         let { currentRoom, roomLength } = this.state
         if(!isNaN(roomLength) && roomLength > 0 && roomLength < 40 ){
             if(currentRoom < roomLength){
                 if(currentRoom >= 0){
-                    let { rooms, roomDouble, roomFeatures, roomPrice, roomSingle } = this.state
-                    if((roomSingle !== '' || roomDouble !== '') && roomPrice !== ''){
+                    let { rooms, roomFeatures, roomPrice, roomBed, roomFood } = this.state
+                    if(roomBed !== '' && roomPrice !== '' && roomFood){
                     let newRoom = {
-                        bed:{
-                           single: rooms[currentRoom] && rooms[currentRoom].bed.single ? rooms[currentRoom].bed.single : roomSingle.trim() === '' ? '0' : roomSingle,
-                           double: rooms[currentRoom] && rooms[currentRoom].bed.double ? rooms[currentRoom].bed.double : roomDouble.trim() === '' ? '0' : roomDouble
-                        },
+                        bed: rooms[currentRoom] && rooms[currentRoom].bed ? rooms[currentRoom].bed : roomBed,
                         price: rooms[currentRoom] && rooms[currentRoom].price ? rooms[currentRoom].price : roomPrice,
+                        food: rooms[currentRoom] && rooms[currentRoom].food ? rooms[currentRoom].food : roomFood,
                         number: currentRoom + 1
                     }
                     rooms[currentRoom] = newRoom
@@ -170,32 +166,33 @@ export default class AddHotel extends React.Component{
                     <h1 style={{textAlign: 'center'}}>Room {currentRoom + 1}</h1>
                         <Field 
                         label="Bed"
-                        placeholder='Single'
-                        secondInput={true}
-                        value={rooms[currentRoom] && rooms[currentRoom].bed.single ? rooms[currentRoom].bed.single : this.state.roomSingle}
-                        secValue={rooms[currentRoom] && rooms[currentRoom].bed.double ? rooms[currentRoom].bed.double : this.state.roomDouble}
+                        placeholder='0'
+                        value={rooms[currentRoom] && rooms[currentRoom].bed ? rooms[currentRoom].bed : this.state.roomBed}
                         onChange={({target})=>{
-                            if(rooms[currentRoom] && rooms[currentRoom].single !== undefined){
+                            if(rooms[currentRoom] && rooms[currentRoom].bed !== undefined){
                                 let newRooms = rooms
-                                newRooms[currentRoom].bed.single = target.value
+                                newRooms[currentRoom].bed = target.value
                                 this.setState({rooms: newRooms})
                             }else{
-                                this.setState({roomSingle: target.value})
+                                this.setState({roomBed: target.value})
                             }
                         }}
-                        secOnChange={({target})=>{
-                            if(rooms[currentRoom] && rooms[currentRoom].double !== undefined){
-                                let newRooms = rooms
-                                newRooms[currentRoom].bed.double = target.value
-                                this.setState({rooms: newRooms})
-                            }else{
-                                this.setState({roomDouble: target.value})
-                            }
-                        }}
-                        secWidth={40}
-                        secPlaceholder='Double'
                         width={40}
-                        secStyle={{marginLeft: 5}}
+                        />
+                        <Field 
+                        label="Food"
+                        placeholder='0'
+                        value={rooms[currentRoom] && rooms[currentRoom].food ? rooms[currentRoom].food : this.state.roomFood}
+                        onChange={({target})=>{
+                            if(rooms[currentRoom] && rooms[currentRoom].food !== undefined){
+                                let newRooms = rooms
+                                newRooms[currentRoom].food = target.value
+                                this.setState({rooms: newRooms})
+                            }else{
+                                this.setState({roomFood: target.value})
+                            }
+                        }}
+                        width={40}
                         />
                         <Field 
                          label='Price'
@@ -275,26 +272,6 @@ export default class AddHotel extends React.Component{
                 value={this.state.roomLength}
                 width={40}
                 onChange={({target})=>this.setState({errors: [], roomLength: target.value})}
-                />
-                <Field 
-                label='Food Prices:'
-                placeholder='Breakfast'
-                value={this.state.breakfast}
-                width={55}
-                onChange={({target})=>this.setState({errors: [], breakfast: target.value})}
-                />
-                <Field 
-                placeholder='Lunch'
-                value={this.state.lunch}
-                width={55}
-                onChange={({target})=>this.setState({errors: [], lunch: target.value})}
-                />
-                <Field 
-                style={{marginTop: 8}}
-                placeholder='Dinner'
-                value={this.state.dinner}
-                width={55}
-                onChange={({target})=>this.setState({errors: [], dinner: target.value})}
                 />
                 <Field 
                 label='Media:' 

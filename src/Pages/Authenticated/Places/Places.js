@@ -59,7 +59,7 @@ const Places = (props)=>{
         }
     },[props])
     if(loading){
-        return (<Loading />)
+        return (<Layout><Loading /></Layout>)
     }else{
         return(
             <Layout to={city ? `cities/${city.id}` : ''}  head={`${ city ? `${city.name} / Places & Activity`: 'Places'}`}>

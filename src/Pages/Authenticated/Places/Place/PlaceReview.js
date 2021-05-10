@@ -5,6 +5,7 @@ import Loading from '../../../../components/Loading'
 import ReactStars from 'react-stars'
 import Button from '../../../../components/Button/Button'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 const PlaceReview = (props)=>{
     const [ loading, setLoading ] = useState(true)
     const [ placeForm, setPlaceForm ] = useState(null)
@@ -80,11 +81,13 @@ const PlaceReview = (props)=>{
 }
 
 
-const UserDiv = styled.div`
+const UserDiv = styled(Link)`
     display: flex;
     flex-direction: row; 
     justify-content: center; 
     align-items: center; 
+    text-decoration: none;
+    color: black;
     padding: 10px;
     border-radius: 5px;
     transition: background-color 0.18s;
@@ -135,7 +138,7 @@ const ReviewCard = (props)=>{
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', marginTop: 5}}>
         <div style={{display: 'flex', width: 750, border: '1px solid gray', margin: 5, padding: 7, flexDirection: 'column', borderRadius: 10}}>
            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', margin: 5, paddingLeft: 15, paddingRight: 15}}>
-               <UserDiv>
+               <UserDiv to={`/touirsts/${props.review.user.id}`}>
                 <div style={{height: 50, width: 50, borderRadius: 50/2, backgroundImage: `url(${props.review.user.picture})`, backgroundSize: 'cover', backgroundPosition: 'center'}} />
                 <p style={{padding: 0, margin: 0, marginLeft: 15,}}>{props.review.user.name}</p>
                </UserDiv>

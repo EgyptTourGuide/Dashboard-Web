@@ -33,6 +33,7 @@ import Activities from './Pages/Authenticated/Activity/Activities'
 import AddActivity from './Pages/Authenticated/Activity/AddActivity'
 import Activity from './Pages/Authenticated/Activity/Activity'
 import HotelSettings from './Pages/Authenticated/Settings/HotelSettings/HotelSettings'
+import { getToken } from './api/api'
   
 
 const UnAuthenticated = (props)=>{
@@ -103,11 +104,13 @@ const Router = (props)=>{
         if(storedUser){
           const { token, refreshToken } = storedUser
           if(token && refreshToken){
-              let Refresh = jwt_decode(refreshToken)
-              if(Refresh) data.login(storedUser)
+              let token = await getToken()
+              if(token) data.login(storedUser)
           }
         }
       }catch(e){
+        localStorage.clear()
+        window.location.href = "/login"
         console.log(e)
       }
       setLoading(false)

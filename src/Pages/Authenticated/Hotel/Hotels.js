@@ -5,30 +5,59 @@ import Button from '../../../components/Button/Button'
 import Card from '../../../components/Card/Card'
 import Loading from '../../../components/Loading'
 import Layout from '../../../layout/Layout'
+import qs from 'qs'
+import { getCity } from '../../../api/City'
 
 const Hotels = (props)=>{
+   const [city, setCity] = useState(null)
    const [hotels, setHotels] = useState([])
    const [loading, setLoading] = useState(true)
 
    useEffect(()=>{
-       async function getHotels(){
-           try{
-           const res = await axios.get(`${URL}/hotels`)
-           console.log(res.data)
-           setHotels(res.data)
-           }catch(e){
-               console.log(e)
-               setLoading(false)
-           }
-           setLoading(false)
-       }
+    const cityId = qs.parse(props.location.search,{ ignoreQueryPrefix: true }).city
 
-       getHotels()
-   },[])
+    setLoading(true)
+    //Function to request city
+    async function reqCity(id){
+        try{
+       let city = await getCity(id)
+       setCity({id: city.id, name: city.name})
+        }catch(e){
+            console.log(e)
+            window.location.href = "/places"
+        }
+    }
+    //Function to request places with id or without id
+    async function getHotels(id){
+        try{
+        let res = id ? await axios.get(`${URL}/hotels?city=${id}`) : await axios.get(`${URL}/hotels`) 
+        if(res.status === 200) setHotels(res.data)
+        setLoading(false)
+        }catch(e){
+            console.log(e)
+        }
+    }
+    if(props.location.state){
+        setCity(props.location.state.city)
+        getHotels(props.location.state.city && props.location.state.city.id)
+    }
+    //Check if city id in query not null
+    else if(cityId !== undefined){
+        reqCity(cityId)
+        getHotels(cityId)
+
+    }
+    //If we reqeust places without city id
+    else{
+        setCity(null)
+        getHotels()
+    }
+
+   },[props])
     if(loading) return <Layout><Loading /></Layout>
     else
     return (
-        <Layout head='Hotels'>
+        <Layout to={city ? `cities/${city.id}` : ''}  head={`${ city ? `${city.name} / Hotels`: 'Hotels'}`}>
         <div style={{display: 'flex', margin: 15, justifyContent: 'center', alignItems: 'center'}}>
           <Button to='/hotels/add'>Add Hotel</Button>
         </div>

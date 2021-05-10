@@ -26,7 +26,7 @@ const City = (props)=>{
             <Card title='About' to={{pathname: `/cities/${city.id}/about`, state}} />
             <Card title='Media' to={{pathname: `/cities/${city.id}/media`, state}} />
             <Card title='Places / Activity' to={{pathname: `/places`, search: `?city=${city.id}`, state}}/>
-            <Card title='Hotels' to={{pathname: `/cities/${city.id}/hotels`, state: {aboutCity: city}}}/>
+            <Card title='Hotels' to={{pathname: `/hotels`, search: `?city=${city.id}`, state}}/>
             <Card title='Tours'to={{pathname: `/cities/${city.id}/tours`, state: {aboutCity: city}}} />
             <Card title='Transport'to={{pathname: `/cities/${city.id}/transport`, state: {aboutCity: city}}} />
             </div> }

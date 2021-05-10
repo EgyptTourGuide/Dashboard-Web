@@ -38,6 +38,7 @@ const AddActivity = (props)=>{
     },[])
 
     const onSubmit = async()=>{
+        setLoading(true)
         if(name.trim() !== '' && description.trim() !== '' && files.length > 0){
             let fd = new FormData()
             fd.append('name', name)

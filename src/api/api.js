@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-export const URL = 'https://egypttourguide.herokuapp.com'
+export const URL = 'http://127.0.0.1:3001'
 
 /* egypttourguide.herokuapp.com */
 
 
-const getToken = async()=>{
+export const getToken = async()=>{
     try{
     const user = JSON.parse(localStorage.getItem('user'))
     const refreshToken = user.refreshToken
