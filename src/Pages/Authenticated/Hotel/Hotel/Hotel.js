@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Card from '../../../components/Card/Card'
-import Layout from '../../../layout/Layout'
-import { URL } from '../../../api/api'
+import Card from '../../../../components/Card/Card'
+import Layout from '../../../../layout/Layout'
+import { URL } from '../../../../api/api'
 import axios from 'axios'
-import Loading from '../../../components/Loading'
+import Loading from '../../../../components/Loading'
 
 const Hotel = (props)=>{
     const [loading, setLoading] = useState(true)
@@ -34,8 +34,8 @@ const Hotel = (props)=>{
                <Card title='Media' />
                <Card title='Requests' />
                <Card title= 'Rooms' />
-               <Card title= 'Form' />
-               <Card title= 'Reviews' />
+               <Card title= 'Form' to={{pathname: `${hotel && hotel.id}/form`}} />
+               <Card title= 'Reviews' to={{pathname: `${hotel && hotel.id}/reviews`}} />
             </div>
         </Layout>
     )

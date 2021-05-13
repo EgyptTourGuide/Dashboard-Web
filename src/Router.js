@@ -27,13 +27,15 @@ import {
   } from "react-router-dom";
 import Layout from './layout/Layout'
 import AboutPlace from './Pages/Authenticated/Places/Place/About'
-import Hotel from './Pages/Authenticated/Hotel/Hotel'
+import Hotel from './Pages/Authenticated/Hotel/Hotel/Hotel'
 import AddHotel from './Pages/Authenticated/Hotel/AddHotel'
 import Activities from './Pages/Authenticated/Activity/Activities'
 import AddActivity from './Pages/Authenticated/Activity/AddActivity'
 import Activity from './Pages/Authenticated/Activity/Activity'
 import HotelSettings from './Pages/Authenticated/Settings/HotelSettings/HotelSettings'
+import HotelForm from './Pages/Authenticated/Hotel/Hotel/HotelForm'
 import { getToken } from './api/api'
+import HotelReview from './Pages/Authenticated/Hotel/Hotel/HotelReviews'
   
 
 const UnAuthenticated = (props)=>{
@@ -74,6 +76,8 @@ const Authenticated = (props)=>{
          <Route exact path='/hotels' component={Hotels} />
          <Route exact path='/hotels/add' component={AddHotel} />
          <Route exact path='/hotels/:id' component={Hotel} />
+         <Route exact path='/hotels/:id/form' component={HotelForm} />
+         <Route exact path='/hotels/:id/reviews' component={HotelReview} />
          <Route exact path='/activities' component={Activities} />
          <Route exact path='/activities/add' component={AddActivity} />
          <Route exact path='/activities/:id' component={Activity} />

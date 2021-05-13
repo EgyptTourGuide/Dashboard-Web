@@ -209,12 +209,6 @@ export default class AddHotel extends React.Component{
                              }
                          }}
                          />
-                        <Field 
-                         label='Room Features:'
-                         selectPlaceholder='Features'
-                         width={90}
-                         type='select'
-                        />
                     </div> : <div style={{height: 242.867}}><h1>Want to save this Hotel?</h1></div>}</> : <>
                 <Field
                 label='City:'
