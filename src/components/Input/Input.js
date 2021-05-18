@@ -48,7 +48,7 @@ const Inp = styled.input`
   transition: border 0.2s ease;
   border-radius: 5px;
     &:hover{
-        border-color: black;
+        border-color: ${props=> props.disabled ? 'red' : 'black'}
     }
     &:focus{
     border-color: black;

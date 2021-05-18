@@ -17,6 +17,7 @@ export default class AddHotel extends React.Component{
         long: '',
         lat: '',
         description: '',
+        stars: '',
         files: '',
         cities: [],
         citiesLoading: true,
@@ -72,8 +73,9 @@ export default class AddHotel extends React.Component{
 
     validate = async()=>{
         if(this.state.errors.length === 0){
-            let { name, description, long, lat, rooms, city, isAvailable } = this.state
+            let { name, description, long, lat, rooms, city, isAvailable, stars} = this.state
             if(name.trim() === '') this.setState(prevState=>({errors: [...prevState.errors, 'Hotel Name is Required']}))
+            if(stars.trim() === '') this.setState(prevState=>({errors: [...prevState.errors, 'Hotel Stars is Required']}))
             if(description.trim() === '') this.setState(prevState=>({errors: [...prevState.errors, 'Hotel description is Required']}))
             if(long.trim() === '') this.setState(prevState=>({errors: [...prevState.errors, 'Hotel long is Required']}))
             if(lat.trim() === '') this.setState(prevState=>({errors: [...prevState.errors, 'Hotel lat is Required']}))
@@ -93,12 +95,13 @@ export default class AddHotel extends React.Component{
             return
         } 
         else{
-            let { name, description, long, lat, rooms, city, isAvailable, hotelFeatures, files } = this.state
+            let { name, description, long, lat, rooms, city, isAvailable, hotelFeatures, files, stars } = this.state
             const fd = new FormData()
             console.log(JSON.stringify(rooms))
             fd.append('name', name)
             fd.append('description', description)
             fd.append('features', hotelFeatures)
+            fd.append('stars', stars)
             fd.append('long', long)
             fd.append('lat', lat)
             fd.append('rooms', JSON.stringify(rooms))
@@ -231,6 +234,13 @@ export default class AddHotel extends React.Component{
                 width={300}
                 height={100}
                 onChange={({target})=>this.setState({errors: [], description: target.value})}
+                />
+                <Field   
+                label="Stars:"
+                placeholder='Hotel Stars'
+                placeholder='0'
+                width={40}
+                onChange={({target})=>this.setState({errors: [], stars: target.value})}
                 />
                 <Field   
                 label="Features:"

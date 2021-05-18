@@ -93,7 +93,7 @@ const Field = (props)=>{
                     </div>
                  }
                  <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: 60}}>
-                 {props.files.length > 0 && <p style={{margin: 0, marginLeft: 5, padding: 0}}>{props.files.length} file selected</p>}
+                 {props.files && props.files.length > 0 && <p style={{margin: 0, marginLeft: 5, padding: 0}}>{props.files.length} File selected</p>}
                  </div></>)}
 
                  {props.type === 'time' && <p style={{marginLeft: 5, marginRight: 5, width: 30}}>To: </p> }

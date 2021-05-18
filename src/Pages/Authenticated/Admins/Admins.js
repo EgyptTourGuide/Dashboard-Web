@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Layout from '../../../layout/Layout'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { URL, authAxios } from '../../../api/api'
+import { AuthContext } from '../../../AuthProvider'
+import Button from '../../../components/Button/Button'
 
 const Admins = (props)=>{
 
@@ -27,6 +29,8 @@ const Admins = (props)=>{
 
     return(
         <Layout head='Settings / Admins'>
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginTop: 30}}>
+                <Button>Add Admin</Button>
             <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: 15}}>
                 { admins.length > 0 && admins.map(admin=><Admin 
                 id={admin.id} 
@@ -35,6 +39,7 @@ const Admins = (props)=>{
                 name={admin.fullname} 
                 stars={admin.rate} 
                 />) }
+            </div>
             </div>
         </Layout>
     )
@@ -77,10 +82,11 @@ const Container = styled(Link)`
 
 
 const Admin = (props)=>{
-
+   
+    const data = useContext(AuthContext)
 
     return (
-        <Container to={`/Admin/${props.id}`}>
+        <Container to={props.id === data.user.id ? '/profile' : `/admin/${props.id}`}>
             <ProfileImage image={props.image} />
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
                 <p style={{margin: 0, padding: 0, color: 'black'}}>{props.name}</p>

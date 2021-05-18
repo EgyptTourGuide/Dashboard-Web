@@ -5,11 +5,12 @@ import axios from 'axios'
 import { authAxios, URL } from '../../../../api/api'
 import Input from '../../../../components/Input/Input'
 import Button from '../../../../components/Button/Button'
-
+import { IconPicker } from 'react-fa-icon-picker'
 
 const HotelSettings = (props)=>{
     const [features, setFeatures] = useState([])
     const [feature, setFeature] = useState('')
+    const [ value, setValue ] = useState('')
 
 
     useEffect(()=>{
@@ -64,6 +65,7 @@ const HotelSettings = (props)=>{
                    {features.length > 0 && features.map(f=><ListWithDelete value={f} key={f} onDelete={deleteFeature}/>)}
               </div>
               <div style={styles.inp}>
+              <IconPicker value={value} buttonStyles={{marginRight: 4, backgroundColor: 'black'}} buttonIconStyles={{backgroundColor: 'wheat'}} onChange={(v) =>{ console.log(v); setValue(v);}} />
               <Input style={{width: 200, borderRadius: 0, borderTop: 0, borderLeft: 0, borderRight: 0}} value={feature} onChange={({target})=>setFeature(target.value)}/>
               <Button style={styles.btn} onClick={addFeature}>Add</Button>
               </div>

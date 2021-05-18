@@ -4,6 +4,8 @@ import Header from '../components/Header/Header'
 import styled from 'styled-components'
 import { NavLink, Link } from 'react-router-dom'
 import { IoArrowBackCircleOutline ,IoBan } from 'react-icons/io5'
+import { useContext } from 'react'
+import { AuthContext } from '../AuthProvider'
 
 
 let Nav = styled(NavLink)`
@@ -30,17 +32,53 @@ p{
 }
 `
 
+const User = styled(Link)`
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  flex-direction: column;
+  background-color: white;
+  transition: background-color 0.30s;
+  padding: 12px;
+  p {
+   color: black;
+   text-align: center;
+   padding: 0;
+   margin: 0;
+   font-size: 14px;
+  }
+  &:hover{
+     background-color: rgba(0,0,0,0.1);
+  }
+`
+
+const UserImage = styled.div`
+   background: ${props=>props.picture ? `url(${props.picture})` : 'rgba(0,0,0,0.4)'};    
+   width: 70px;
+   height: 70px;
+   border-radius: 35px;
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   box-shadow: 0 4px 6px -6px black;
+`
+
 
 
 const Layout = (props)=>{
-
+    
+    const context = useContext(AuthContext)
     return(
         <>
         <Header />
         <div className={classes.container}>
         <div className={classes.navContainer}>
-            <div className={classes.navUser}>
-            </div>
+            <User to={`/profile`}>
+               <UserImage picture={context.user.picture} />
+               <p>{context.user.fullname}</p>
+            </User>
           <div>
               <Nav activeStyle={{backgroundColor: 'rgba(0,0,0,0.2)'}} to='/cities'>
                  <p className={classes.btnText}> Cities </p>
