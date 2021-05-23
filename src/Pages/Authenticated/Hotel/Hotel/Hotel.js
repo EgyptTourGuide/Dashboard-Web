@@ -33,7 +33,7 @@ const Hotel = (props)=>{
                <Card title='About' />
                <Card title='Media' />
                <Card title='Requests' />
-               <Card title= 'Rooms' />
+               <Card title= 'Rooms' to={{pathname: `${hotel && hotel.id}/rooms`}} />
                <Card title= 'Form' to={{pathname: `${hotel && hotel.id}/form`}} />
                <Card title= 'Reviews' to={{pathname: `${hotel && hotel.id}/reviews`}} />
             </div>

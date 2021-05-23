@@ -100,7 +100,7 @@ export default class AddHotel extends React.Component{
             console.log(JSON.stringify(rooms))
             fd.append('name', name)
             fd.append('description', description)
-            fd.append('features', hotelFeatures)
+            fd.append('features', JSON.stringify(hotelFeatures))
             fd.append('stars', stars)
             fd.append('long', long)
             fd.append('lat', lat)

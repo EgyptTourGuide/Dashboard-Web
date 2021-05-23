@@ -38,6 +38,9 @@ import HotelReview from './Pages/Authenticated/Hotel/Hotel/HotelReviews'
 import styled from 'styled-components'
 import Field from './components/Field/Field'
 import Button from './components/Button/Button'
+import HotelRooms from './Pages/Authenticated/Hotel/Hotel/HotelRooms'
+import Room from './Pages/Authenticated/Hotel/Rooms/Room'
+import RoomMedia from './Pages/Authenticated/Hotel/Rooms/RoomMedia'
   
 
 const UnAuthenticated = (props)=>{
@@ -80,6 +83,9 @@ const Authenticated = (props)=>{
          <Route exact path='/hotels/:id' component={Hotel} />
          <Route exact path='/hotels/:id/form' component={HotelForm} />
          <Route exact path='/hotels/:id/reviews' component={HotelReview} />
+         <Route exact path='/hotels/:id/rooms' component={HotelRooms} />
+         <Route exact path='/hotels/:id/rooms/:roomId' component={Room} />
+         <Route exact path='/hotels/:id/rooms/:roomId/media' component={RoomMedia} />
          <Route exact path='/activities' component={Activities} />
          <Route exact path='/activities/add' component={AddActivity} />
          <Route exact path='/activities/:id' component={Activity} />
