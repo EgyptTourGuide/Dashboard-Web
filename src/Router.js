@@ -41,6 +41,8 @@ import Button from './components/Button/Button'
 import HotelRooms from './Pages/Authenticated/Hotel/Hotel/HotelRooms'
 import Room from './Pages/Authenticated/Hotel/Rooms/Room'
 import RoomMedia from './Pages/Authenticated/Hotel/Rooms/RoomMedia'
+import HotelMedia from './Pages/Authenticated/Hotel/Hotel/HotelMedia'
+import PlaceMedia from './Pages/Authenticated/Places/Place/PlaceMedia'
   
 
 const UnAuthenticated = (props)=>{
@@ -75,7 +77,7 @@ const Authenticated = (props)=>{
          <Route exact path='/places/add' component={AddPlace} />
          <Route exact path='/places/:id' component={Place} />
          <Route exact path='/places/:id/about' component={AboutPlace} />
-         {/* <Route exact path='/places/:id/media' component={PlaceMedia} /> */}
+         <Route exact path='/places/:id/media' component={PlaceMedia} />
          <Route exact path='/places/:id/form' component={PlaceForm} />
          <Route exact path='/places/:id/reviews' component={PlaceReview} /> 
          <Route exact path='/hotels' component={Hotels} />
@@ -83,6 +85,7 @@ const Authenticated = (props)=>{
          <Route exact path='/hotels/:id' component={Hotel} />
          <Route exact path='/hotels/:id/form' component={HotelForm} />
          <Route exact path='/hotels/:id/reviews' component={HotelReview} />
+         <Route exact path='/hotels/:id/media' component={HotelMedia} />
          <Route exact path='/hotels/:id/rooms' component={HotelRooms} />
          <Route exact path='/hotels/:id/rooms/:roomId' component={Room} />
          <Route exact path='/hotels/:id/rooms/:roomId/media' component={RoomMedia} />

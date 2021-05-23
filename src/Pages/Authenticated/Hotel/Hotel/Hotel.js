@@ -31,7 +31,7 @@ const Hotel = (props)=>{
         <Layout to='/hotels' head={`Hotels / ${hotel ? `${hotel.name}` : 'Hotel Name'}`}>
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
                <Card title='About' />
-               <Card title='Media' />
+               <Card title='Media' to={`${props.match.params.id}/media/`} />
                <Card title='Requests' />
                <Card title= 'Rooms' to={{pathname: `${hotel && hotel.id}/rooms`}} />
                <Card title= 'Form' to={{pathname: `${hotel && hotel.id}/form`}} />
