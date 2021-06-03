@@ -43,7 +43,7 @@ import Room from './Pages/Authenticated/Hotel/Rooms/Room'
 import RoomMedia from './Pages/Authenticated/Hotel/Rooms/RoomMedia'
 import HotelMedia from './Pages/Authenticated/Hotel/Hotel/HotelMedia'
 import PlaceMedia from './Pages/Authenticated/Places/Place/PlaceMedia'
-  
+import HotelRequest from './Pages/Authenticated/Hotel/Hotel/HotelRequests'
 
 const UnAuthenticated = (props)=>{
 
@@ -84,6 +84,7 @@ const Authenticated = (props)=>{
          <Route exact path='/hotels/add' component={AddHotel} />
          <Route exact path='/hotels/:id' component={Hotel} />
          <Route exact path='/hotels/:id/form' component={HotelForm} />
+         <Route exact path='/hotels/:id/requests' component={HotelRequest} />
          <Route exact path='/hotels/:id/reviews' component={HotelReview} />
          <Route exact path='/hotels/:id/media' component={HotelMedia} />
          <Route exact path='/hotels/:id/rooms' component={HotelRooms} />

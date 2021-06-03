@@ -56,7 +56,7 @@ const Card = (props)=>{
 return(
       <Container {...props}>
        <Darker to={props.to}>
-       <p style={{color: 'white', fontSize: 20, margin: 0, padding: 0,}}>{props.title}</p>
+       <p style={{color: 'white', fontSize: 20, margin: 0, padding: 0, paddingRight: 9, paddingLeft: 9, textAlign: 'center'}}>{props.title}</p>
        {props.stars && <ReactStars
             count={5}
             edit={false}
