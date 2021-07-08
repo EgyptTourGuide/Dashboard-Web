@@ -17,7 +17,7 @@ const days = [{label: 'SUN', value: 'Sunday'},{
 const Field = (props)=>{
 
     if(props.type === 'select'){
-        const { selectLoading, selectOptions, selectPlaceholder, onSelect, selectWidth, selected, selectMulti  } = props
+        const { selectLoading, selectOptions, selectPlaceholder, onSelect, selectWidth, selected, selectMulti, disabled, create  } = props
         return(
             <div className={classes.field} style={props.style}>
             <p className={classes.label}>{props.label}</p> 
@@ -29,7 +29,10 @@ const Field = (props)=>{
                 onSelect={onSelect}
                 selectWidth={selectWidth}
                 selected={selected}
-                selectMulti={selectMulti} />
+                selectMulti={selectMulti}
+                disabled={disabled}
+                create={create}
+                />
             </div>
 
         )
@@ -39,7 +42,7 @@ const Field = (props)=>{
         <div className={classes.field} style={props.style}>
             <p className={classes.label}>{props.label}</p> 
             <div className={classes.space}/>
-            {props.type === 'time' && (
+            {props.days && (
             <Picker
             selectLoading={props.selectLoading} 
             selectPlaceholder={props.selectPlaceholder ? props.selectPlaceholder : 'Day'}
@@ -48,6 +51,20 @@ const Field = (props)=>{
             selected={props.selected}
               selectOptions={days}
             />) }
+            {props.places && (
+                <Input 
+                    placeholder={props.dayPlaceholder} 
+                    width={props.dayWidth} 
+                    height={props.dayHight} 
+                    onChange={props.dayOnChange}  
+                    icon={props.icon}
+                    text={props.text}
+                    value={props.dayValue}
+                    disabled={props.disabled}
+                    style={{marginRight: 5}}
+                />
+            )}
+           
 
             {props.type === 'time' && <p style={{marginLeft: 9, marginRight: 5, width: 47}}>From: </p> }
             <Input 
@@ -63,7 +80,7 @@ const Field = (props)=>{
                 disabled={props.disabled}
             />
 
-            { props.selectOptions && (
+            { props.selectOptions && !props.places && (
                 <>
                 <div style={{marginLeft: 3, marginRight: 5}}></div>
                 <Picker  
@@ -109,6 +126,14 @@ const Field = (props)=>{
                 value={props.secValue}
                 style={props.secStyle}
                 type={props.secType}
+            />)}
+             {props.places && (<Picker 
+             selectLoading={props.selectLoading} 
+             selectPlaceholder={props.selectPlaceholder ? props.selectPlaceholder : 'Places..'}
+             onSelect={props.onSelect}
+             selectWidth={props.selectWidth ? props.selectWidth : 200}
+             selected={props.selected}
+             selectOptions={props.selectOptions}
             />)}
             {props.type === 'time' && <Button onClick={props.onAdd} style={{marginLeft: 12, marginTop: 6, width: 50}}>Add</Button>}
         </div> 

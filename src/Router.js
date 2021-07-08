@@ -44,6 +44,10 @@ import RoomMedia from './Pages/Authenticated/Hotel/Rooms/RoomMedia'
 import HotelMedia from './Pages/Authenticated/Hotel/Hotel/HotelMedia'
 import PlaceMedia from './Pages/Authenticated/Places/Place/PlaceMedia'
 import HotelRequest from './Pages/Authenticated/Hotel/Hotel/HotelRequests'
+import Plans from './Pages/Authenticated/Plan/Plans'
+import AddPlan from './Pages/Authenticated/Plan/AddPlan'
+import Transports from './Pages/Authenticated/Transport/Transports'
+import AddTransport from './Pages/Authenticated/Transport/Create'
 
 const UnAuthenticated = (props)=>{
 
@@ -73,6 +77,10 @@ const Authenticated = (props)=>{
          <Route exact path='/cities/:id' component={City} />
          <Route exact path='/cities/:id/about' component={About} />
          <Route exact path='/cities/:id/media' component={Media} />
+         <Route exact path='/cities/:id/transports' component={Transports} />
+         <Route exact path='/cities/:id/transports/add' component={AddTransport} />
+         <Route exact path='/cities/:id/plans' component={Plans} />
+         <Route exact path='/cities/:id/plans/add' component={AddPlan} />
          <Route exact path='/places' component={Places} />
          <Route exact path='/places/add' component={AddPlace} />
          <Route exact path='/places/:id' component={Place} />

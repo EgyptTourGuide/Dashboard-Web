@@ -246,6 +246,7 @@ export default class AddPlace extends React.Component{
                 onDelete={this.deleteHours}
             />))}
             <Field
+             days
              label='Opens At:'
              placeholder='Foreign'
              type='time'
