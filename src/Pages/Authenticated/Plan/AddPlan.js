@@ -5,6 +5,7 @@ import { authAxios, URL } from '../../../api/api'
 import Button from '../../../components/Button/Button'
 import Field from '../../../components/Field/Field'
 import { ListWithDelete } from '../../../components/List/List'
+import Loading from '../../../components/Loading'
 import Layout from '../../../layout/Layout'
 
 
@@ -29,15 +30,22 @@ const AddPlan = (props)=>{
     const [loading, setLoading] = useState(false)
     const [percent, setPercent] = useState(0)
     const [msg, setMsg] = useState('')
+    const [pageLoading, setPageLoading] = useState(true)
 
     useEffect(()=>{
         const getInfo = async()=>{
+            try{
             let res = await axios.get(`${URL}/cities/${props.match.params.id}`)
             let result = await axios.get(`${URL}/places?city=${props.match.params.id}`)
             setAllPlaces(result.data.places)
             setPlaces(result.data.places.map(place=>({value: place, label: place.name})))
             setCity({name: res.data.city.name, id: res.data.city.id})
             setPlacesLoading(false)
+            setPageLoading(false)
+            }catch(e){
+                console.log(e)
+                setPageLoading(false)
+            }
         }
 
         getInfo()
@@ -140,6 +148,8 @@ const AddPlan = (props)=>{
                 setMsg('Faild')
             }
     }
+
+    if(pageLoading) return(<Layout><Loading /></Layout>)
 
     return(
         <Layout head={`${city !== null ? `${city.name} / Plans / Add` : 'Plans / Add'}`} to={`/cities/${props.match.params.id}/plans`}>

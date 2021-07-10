@@ -49,7 +49,7 @@ const AddTransport = (props)=>{
       fd.append('driverName', driverName)
       fd.append('seats', seats)
       fd.append('type', type)
-      fd.append('cityId', city)
+      fd.append('cityId', city.id)
       fd.append('phone', phone)
       for(let i = 0; i < files.length; i++){
         fd.append('media', files[i])
