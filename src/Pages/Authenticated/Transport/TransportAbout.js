@@ -5,16 +5,15 @@ import Card from '../../../components/Card/Card'
 import Loading from '../../../components/Loading'
 import Layout from "../../../layout/Layout"
 
-const Transport = (props)=>{
+const TransportAbout = (props)=>{
      
-    let [name, setName] = useState(null)
+    let [transport, setTransport] = useState(null)
     let [loading, setLoading] = useState(true)
 
     useEffect(()=>{
         const getT = async()=>{
           let res = await axios.get(`${URL}/transport/${props.match.params.id}`)
-          setName(res.data.transport.driverName)
-          console.log(res.data)
+          setTransport(res.data.transport)
           setLoading(false)
         }
         getT()
@@ -22,14 +21,18 @@ const Transport = (props)=>{
 
     if(loading) return <Layout><Loading /></Layout>
     return (
-    <Layout head={`Transport / ${name}`}>
+    <Layout head={`Transport / ${transport.driverName} / About`} to={`/transports/${props.match.params.id}`}>
       <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
-          <Card to={`/transports/${props.match.params.id}/about`} title='About'/>
-          <Card to={`/transports/${props.match.params.id}/hours`} title='Hours'/>
+          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+          <p>Name: {transport.driverName}</p>
+          <p>Phone: {transport.phone}</p>
+          <p>Seats: {transport.seats}</p>
+          <p>Type: {transport.type}</p>
+          </div>
       </div>
     </Layout>
     
     )
 }
 
-export default Transport
+export default TransportAbout

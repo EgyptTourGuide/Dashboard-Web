@@ -52,6 +52,10 @@ import AddTransport from './Pages/Authenticated/Transport/Create'
 import Transport from './Pages/Authenticated/Transport/Transport'
 import PlanMedia from './Pages/Authenticated/Plan/PlanMedia'
 import PlanForm from './Pages/Authenticated/Plan/PlanForm'
+import PlanReview from './Pages/Authenticated/Plan/PlanReview'
+import TransportAbout from './Pages/Authenticated/Transport/TransportAbout'
+import TransportHours from './Pages/Authenticated/Transport/TransportHours'
+import RoomHours from './Pages/Authenticated/Hotel/Rooms/RoomHours'
 
 const UnAuthenticated = (props)=>{
 
@@ -88,7 +92,10 @@ const Authenticated = (props)=>{
          <Route exact path='/plans/:id' component={Plan} />
          <Route exact path='/plans/:id/media' component={PlanMedia} />
          <Route exact path='/plans/:id/form' component={PlanForm} />
+         <Route exact path='/plans/:id/reviews' component={PlanReview} />
          <Route exact path='/transports/:id' component={Transport} />
+         <Route exact path='/transports/:id/about' component={TransportAbout} />
+         <Route exact path='/transports/:id/hours' component={TransportHours} />
          <Route exact path='/places' component={Places} />
          <Route exact path='/places/add' component={AddPlace} />
          <Route exact path='/places/:id' component={Place} />
@@ -106,6 +113,7 @@ const Authenticated = (props)=>{
          <Route exact path='/hotels/:id/rooms' component={HotelRooms} />
          <Route exact path='/hotels/:id/rooms/:roomId' component={Room} />
          <Route exact path='/hotels/:id/rooms/:roomId/media' component={RoomMedia} />
+         <Route exact path='/hotels/:id/rooms/:roomId/hours' component={RoomHours} />
          <Route exact path='/activities' component={Activities} />
          <Route exact path='/activities/add' component={AddActivity} />
          <Route exact path='/activities/:id' component={Activity} />

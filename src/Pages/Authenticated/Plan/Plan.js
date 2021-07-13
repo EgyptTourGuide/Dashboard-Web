@@ -36,7 +36,7 @@ const Plan = (props)=>{
           <Card title='Media' to={`/plans/${props.match.params.id}/media`}/>
           <Card title='Tourist Plans'/>
           <Card title='Form' to={`/plans/${props.match.params.id}/form`}/>
-          <Card title='Reviews'/>
+          <Card title='Reviews' to={`/plans/${props.match.params.id}/reviews`}/>
       </div>
     </Layout>
     

@@ -82,7 +82,7 @@ const HotelRequest = (props)=>{
 }
 
 
-const UserDiv = styled(Link)`
+export const UserDiv = styled(Link)`
     display: flex;
     flex-direction: row; 
     justify-content: center; 
@@ -96,7 +96,7 @@ const UserDiv = styled(Link)`
         background-color: rgba(0,0,0,0.2);
     }
 `
-const RoomDiv = styled(Link)`
+export const RoomDiv = styled(Link)`
 display: flex;
 flex-direction: row; 
 justify-content: center; 

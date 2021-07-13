@@ -43,7 +43,7 @@ const Room = (props)=>{
         return(
             <Layout to={`/hotels/${props.match.params.id}/rooms`} head={ room && `${hotelName} / Rooms / ${room.number}`}>
                 <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
-                <Card title='About' />
+                <Card title='Hours' to={`${props.match.params.roomId}/hours/`}/>
                 <Card title='Media' to={`${props.match.params.roomId}/media/`} />
                 </div>
             </Layout>

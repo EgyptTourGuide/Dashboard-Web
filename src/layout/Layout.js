@@ -95,12 +95,6 @@ const Layout = (props)=>{
               <Nav activeStyle={{backgroundColor: 'rgba(0,0,0,0.2)'}} to='/tourists'>
                  <p className={classes.btnText}> Tourists </p>
               </Nav>
-              <Nav activeStyle={{backgroundColor: 'rgba(0,0,0,0.2)'}} exact to=''>
-                 <p className={classes.btnText}> Reports </p>
-              </Nav>
-              <Nav activeStyle={{backgroundColor: 'rgba(0,0,0,0.2)'}} exact to=''>
-                 <p className={classes.btnText}> Messages </p>
-              </Nav>
               <Nav activeStyle={{backgroundColor: 'rgba(0,0,0,0.2)'}} to='/settings'>
                  <p className={classes.btnText}> Settings </p>
               </Nav>
