@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const URL = 'http://192.168.137.1:3001'
+export const URL = 'https://egypttourguide.herokuapp.com'
 
 /* egypttourguide.herokuapp.com */
 
